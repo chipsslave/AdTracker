@@ -45,10 +45,6 @@ public class Ad {
         this.car = new Car();
     }
 
-    public Ad(AdAuthor parseAdAuthor, int parsePrice, String parseLocation, String[] parseImg, String parseComment, String parseMakeYear, CarFuelType parseFuelType, CarGearBox parseGearBox, String parseEnginePower, int parseMileage, CarWheelPosition parseWheelPosition, CarDrivenWheels parseDriveTrain, int parseWeight, String parseFirstRefCountry) {
-
-    }
-
     public String getAdId() {
         return adId;
     }
