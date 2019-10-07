@@ -26,7 +26,6 @@ public interface IndividualAd {
     int parseWeight();
     String parseFirstRefCountry();
     CarDefect parseDefect();
-    CarDoors parseDoors();
     String parseMot();
     String parseVin();
     String parseMake();

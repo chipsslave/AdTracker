@@ -21,7 +21,6 @@ public class Car {
     private int weight;
     private String firstRegCountry;
     private CarDefect defect;
-    private CarDoors doors;
     private String mot;
     private String vin;
     
@@ -42,7 +41,7 @@ public class Car {
         this.bodyType = bodyType;
     }
 
-    public Car(String makeYear, CarFuelType fuelType, CarGearBox gearbox, String enginePower, int mileage, String rimSize, CarWheelPosition wheelPosition, CarDrivenWheels driveTrain, int weight, String firstRegCountry, CarDefect defect, CarDoors doors, String mot, String vin, String make, String model, String engineSize, CarBodyType bodyType) {
+    public Car(String makeYear, CarFuelType fuelType, CarGearBox gearbox, String enginePower, int mileage, String rimSize, CarWheelPosition wheelPosition, CarDrivenWheels driveTrain, int weight, String firstRegCountry, CarDefect defect, String mot, String vin, String make, String model, String engineSize, CarBodyType bodyType) {
         this.makeYear = makeYear;
         this.fuelType = fuelType;
         this.gearbox = gearbox;
@@ -54,7 +53,6 @@ public class Car {
         this.weight = weight;
         this.firstRegCountry = firstRegCountry;
         this.defect = defect;
-        this.doors = doors;
         this.mot = mot;
         this.vin = vin;
         this.make = make;
@@ -149,14 +147,6 @@ public class Car {
 
     public void setDefect(CarDefect defect) {
         this.defect = defect;
-    }
-
-    public CarDoors getDoors() {
-        return doors;
-    }
-
-    public void setDoors(CarDoors doors) {
-        this.doors = doors;
     }
 
     public String getMot() {

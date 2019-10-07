@@ -97,11 +97,23 @@ public class IndividualAdImpl implements IndividualAd {
 
     @Override
     public CarFuelType parseFuelType() {
-        // TODO Fix to match all types
         String fuelType = getAdCarParams().get("Fuel type");
         if (fuelType == null){
             return CarFuelType.Other;
         }
+        if (fuelType.equals("Petrol / LPG")){
+            return CarFuelType.PetrolLpg;
+        }
+        if (fuelType.equals("Petrol / electricity")){
+            return CarFuelType.PetrolElectricity;
+        }
+        if (fuelType.equals("Diesel / electricity")){
+            return CarFuelType.DieselElectricity;
+        }
+        if (fuelType.equals("Bioethanol (E85)")){
+            return CarFuelType.E85;
+        }
+
         return CarFuelType.valueOf(fuelType);
     }
 
@@ -134,8 +146,11 @@ public class IndividualAdImpl implements IndividualAd {
 
     @Override
     public String parseRimSize() {
-        // TODO
-        return null;
+        String rimSize = getAdCarParams().get("Wheel size");
+        if (rimSize == null) {
+            return "";
+        }
+        return rimSize;
     }
 
     @Override
@@ -188,13 +203,31 @@ public class IndividualAdImpl implements IndividualAd {
 
     @Override
     public CarDefect parseDefect() {
-        // TODO
-        return null;
-    }
-
-    @Override
-    public CarDoors parseDoors() {
-        // TODO
+        String damage = getAdCarParams().get("Damage");
+        if (damage == null) {
+            return CarDefect.NoDamage;
+        }
+        if (damage.equals("Crashed")) {
+            return CarDefect.Crashed;
+        }
+        if (damage.equals("Fire / burn")) {
+            return CarDefect.Fire;
+        }
+        if (damage.equals("Gearbox damage")) {
+            return CarDefect.GearboxDamage;
+        }
+        if (damage.equals("Damaged by hail")) {
+            return CarDefect.HailDamage;
+        }
+        if (damage.equals("Water / flood")) {
+            return CarDefect.WaterDamage;
+        }
+        if (damage.equals("Engine damage")) {
+            return CarDefect.EngineDamage;
+        }
+        if (damage.equals("Other major damages")) {
+            return CarDefect.OtherDamage;
+        }
         return null;
     }
 
@@ -206,8 +239,10 @@ public class IndividualAdImpl implements IndividualAd {
 
     @Override
     public String parseVin() {
-        // TODO
-        return null;
+        if (getAdCarParams().get("VIN number") == null){
+            return "";
+        }
+        return getAdCarParams().get("VIN number");
     }
 
     @Override
@@ -234,7 +269,7 @@ public class IndividualAdImpl implements IndividualAd {
         return null;
     }
 
-    public Ad parseAdFields(Ad ad){
+    public void parseAdFields(Ad ad){
 
         ad.setAuthor(parseAdAuthor());
         ad.setPrice(parsePrice());
@@ -251,6 +286,7 @@ public class IndividualAdImpl implements IndividualAd {
         ad.getCar().setWeight(parseWeight());
         ad.getCar().setFirstRegCountry(parseFirstRefCountry());
 
-        return ad;
+        ad.getCar().setDefect(parseDefect());
+        ad.getCar().setVin(parseVin());
     }
 }
