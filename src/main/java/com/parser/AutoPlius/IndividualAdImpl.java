@@ -1,8 +1,7 @@
-package com.parser.AutoPlius.jsoup;
+package com.parser.AutoPlius;
 
 import com.html.UrlContentReader;
 import com.model.*;
-import com.parser.AutoPlius.IndividualAd;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

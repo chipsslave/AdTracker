@@ -1,7 +1,6 @@
-package com.parser.AutoPlius.jsoup;
+package com.parser.AutoPlius;
 
 import com.html.UrlContentReader;
-import com.parser.AutoPlius.FrontPage;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

@@ -3,7 +3,7 @@ package com.service;
 import com.db.DataStore;
 import com.model.Ad;
 import com.model.AdStatus;
-import com.parser.AutoPlius.jsoup.IndividualAdImpl;
+import com.parser.AutoPlius.IndividualAdImpl;
 
 public class IndAd extends Thread{
     private final int secondInMiliseconds = 1000;

@@ -3,7 +3,7 @@ package com.service;
 import com.db.DataStore;
 import com.model.Ad;
 import com.model.AdStatus;
-import com.parser.AutoPlius.jsoup.FrontPageImpl;
+import com.parser.AutoPlius.FrontPageImpl;
 import org.jsoup.nodes.Element;
 
 public class Front extends Thread{
