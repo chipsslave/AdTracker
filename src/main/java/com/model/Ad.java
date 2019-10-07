@@ -45,22 +45,6 @@ public class Ad {
         this.car = new Car();
     }
 
-    public Ad(String adId, String adUrl, AdAuthor author, AdStatus status, LocalDate found, LocalDate updated, LocalDate lastChecked, LocalDate sold, int price, Car car, String location, String[] images, String comment) {
-        this.adId = adId;
-        this.adUrl = adUrl;
-        this.author = author;
-        this.status = status;
-        this.found = found;
-        this.updated = updated;
-        this.lastChecked = lastChecked;
-        this.sold = sold;
-        this.price = price;
-        this.car = car;
-        this.location = location;
-        this.images = images;
-        this.comment = comment;
-    }
-
     public Ad(AdAuthor parseAdAuthor, int parsePrice, String parseLocation, String[] parseImg, String parseComment, String parseMakeYear, CarFuelType parseFuelType, CarGearBox parseGearBox, String parseEnginePower, int parseMileage, CarWheelPosition parseWheelPosition, CarDrivenWheels parseDriveTrain, int parseWeight, String parseFirstRefCountry) {
 
     }
