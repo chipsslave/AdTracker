@@ -1,18 +1,18 @@
 package com.parser.AutoPlius.jsoup;
 
-import com.parser.AutoPlius.DocumentInJsoupHtml;
+import com.html.UrlContentReader;
 import com.parser.AutoPlius.FrontPage;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class FrontPageImpl extends DocumentInJsoupHtml implements FrontPage {
+public class FrontPageImpl implements FrontPage {
 
     private Elements adsInHtml;
 
-    public FrontPageImpl(Document pageInHtml) {
-        super(pageInHtml);
-        this.adsInHtml = getPageInJsoupHtml().select("a[class^=announcement-item]");
+    public FrontPageImpl(String target) {
+        Document urlJsoupContent = UrlContentReader.readContentInJsoupDocument(target);
+        this.adsInHtml = urlJsoupContent.select("a[class^=announcement-item]");
     }
 
     public Elements getAdsInHtml() {
@@ -21,9 +21,7 @@ public class FrontPageImpl extends DocumentInJsoupHtml implements FrontPage {
 
     @Override
     public int countOfAdsFound(){
-        Elements elements = getPageInJsoupHtml().select("a[class^=announcement-item]");
-
-        return elements.size();
+        return adsInHtml.size();
     }
 
     @Override
