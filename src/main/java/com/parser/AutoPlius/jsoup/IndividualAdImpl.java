@@ -1,7 +1,7 @@
 package com.parser.AutoPlius.jsoup;
 
+import com.html.UrlContentReader;
 import com.model.*;
-import com.parser.AutoPlius.DocumentInJsoupHtml;
 import com.parser.AutoPlius.IndividualAd;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,12 +9,13 @@ import org.jsoup.select.Elements;
 
 import java.util.HashMap;
 
-public class IndividualAdImpl extends DocumentInJsoupHtml implements IndividualAd {
+public class IndividualAdImpl implements IndividualAd {
 
     private HashMap<String, String> adCarParams;
+    private Document htmlContent;
 
-    public IndividualAdImpl(Document pageInHtml) {
-        super(pageInHtml);
+    public IndividualAdImpl(String target) {
+        this.htmlContent = UrlContentReader.readContentInJsoupDocument(target);
         this.adCarParams = parseCarParams();
     }
 
@@ -22,11 +23,15 @@ public class IndividualAdImpl extends DocumentInJsoupHtml implements IndividualA
         return adCarParams;
     }
 
+    public Document getHtmlContent() {
+        return htmlContent;
+    }
+
     @Override
     public AdAuthor parseAdAuthor() {
-        String name = getPageInJsoupHtml().select("div[class=seller-contact-name]").text().trim();
-        String location = getPageInJsoupHtml().select("div[class=seller-contact-location]").text().trim();
-        String phone = getPageInJsoupHtml().select("a[class=seller-phone-number]").text().trim();
+        String name = htmlContent.select("div[class=seller-contact-name]").text().trim();
+        String location = htmlContent.select("div[class=seller-contact-location]").text().trim();
+        String phone = htmlContent.select("a[class=seller-phone-number]").text().trim();
 
         return new AdAuthor(name, location, phone);
     }
@@ -39,32 +44,32 @@ public class IndividualAdImpl extends DocumentInJsoupHtml implements IndividualA
 
     @Override
     public HashMap<String, String> parseCarParams() {
-        HashMap<String, String> tempAdCarParams = new HashMap<String, String>();
+        adCarParams = new HashMap<String, String>();
 
-        Elements paramRows = getPageInJsoupHtml().select("div[class=parameter-row]");
+        Elements paramRows = htmlContent.select("div[class=parameter-row]");
         for (Element paramRow : paramRows){
             String paramLabel = paramRow.select("div[class=parameter-label]").text().trim();
             String paramValue = paramRow.select("div[class=parameter-value]").text().trim();
-            tempAdCarParams.put(paramLabel, paramValue);
+            adCarParams.put(paramLabel, paramValue);
         }
-        return tempAdCarParams;
+        return adCarParams;
     }
 
     @Override
     public int parsePrice() {
-        String priceInString = getPageInJsoupHtml().select("div[class=price]").text();
+        String priceInString = htmlContent.select("div[class=price]").text();
         priceInString = priceInString.replaceAll("[^\\d.]", "").trim();
         return Integer.parseInt(priceInString);
     }
 
     @Override
     public String parseLocation() {
-        return getPageInJsoupHtml().select("div[class=seller-contact-location]").text().trim();
+        return htmlContent.select("div[class=seller-contact-location]").text().trim();
     }
 
     @Override
     public String[] parseImg() {
-        Elements gallery = getPageInJsoupHtml().select("div[class=thumbnail]");
+        Elements gallery = htmlContent.select("div[class=thumbnail]");
         String[] images = new String[gallery.size()];
         int i = 0;
         for (Element imageElement : gallery){
@@ -80,7 +85,7 @@ public class IndividualAdImpl extends DocumentInJsoupHtml implements IndividualA
 
     @Override
     public String parseComment() {
-        return getPageInJsoupHtml().select("div[class=announcement-description]").text().trim();
+        return htmlContent.select("div[class=announcement-description]").text().trim();
     }
 
     @Override
