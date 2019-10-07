@@ -110,6 +110,7 @@ local.properties
 
 /.idea
 
+
 # CMake
 cmake-build-*/
 
