@@ -6,6 +6,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public class IndividualAdImpl implements IndividualAd {
@@ -288,5 +289,7 @@ public class IndividualAdImpl implements IndividualAd {
 
         ad.getCar().setDefect(parseDefect());
         ad.getCar().setVin(parseVin());
+
+        ad.setUpdated(LocalDateTime.now());
     }
 }

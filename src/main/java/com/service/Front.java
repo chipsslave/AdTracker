@@ -1,10 +1,12 @@
 package com.service;
 
-import com.db.DataStore;
 import com.model.Ad;
 import com.model.AdStatus;
 import com.parser.AutoPlius.FrontPageImpl;
 import org.jsoup.nodes.Element;
+
+import java.time.LocalDateTime;
+import java.util.HashMap;
 
 public class Front extends Thread{
     private final String autoPliusUrl = "https://en.autoplius.lt/ads/used-cars?page_nr=1";
@@ -13,16 +15,12 @@ public class Front extends Thread{
 
     private int maxPageToCheck = 5;
     private int checkFrequencyMinutes;
-    private DataStore adStore;
+    private HashMap<String, Ad> adStore;
 
-    public Front(int maxPageToCheck, int checkFrequencyMinutes, DataStore adStore) {
+    public Front(int maxPageToCheck, int checkFrequencyMinutes, HashMap<String, Ad> adStore) {
         this.maxPageToCheck = maxPageToCheck;
         this.checkFrequencyMinutes = checkFrequencyMinutes * MINUTE_IN_MILISECONDS;
         this.adStore = adStore;
-    }
-
-    public DataStore getAdStore() {
-        return adStore;
     }
 
     public void scraping(){
@@ -31,9 +29,10 @@ public class Front extends Thread{
         for (Element ad : frontPage.getAdsInHtml()){
             String id = frontPage.parseAdId(ad);
             String url = frontPage.parseAdUrl(ad);
-            if (!getAdStore().getAdStore().containsKey(id)){
+            if (!adStore.containsKey(id)){
                 System.out.println("Found new Ad " + url);
-                getAdStore().getAdStore().put(id, new Ad(id, url, AdStatus.INTRODUCED));
+                LocalDateTime time = LocalDateTime.now();
+                adStore.put(id, new Ad(id, url, AdStatus.INTRODUCED, time));
             }
         }
 

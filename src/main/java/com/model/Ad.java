@@ -5,7 +5,7 @@
  */
 package com.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 /**
@@ -19,10 +19,10 @@ public class Ad {
     
     private AdStatus status;
     
-    private LocalDate found;
-    private LocalDate updated;
-    private LocalDate lastChecked;
-    private LocalDate sold;
+    private LocalDateTime found;
+    private LocalDateTime updated;
+    private LocalDateTime lastChecked;
+    private LocalDateTime sold;
     
     private int price;
     
@@ -38,10 +38,11 @@ public class Ad {
         this.car = new Car();
     }
 
-    public Ad(String adId, String adUrl, AdStatus status) {
+    public Ad(String adId, String adUrl, AdStatus status, LocalDateTime found) {
         this.adId = adId;
         this.adUrl = adUrl;
         this.status = status;
+        this.found = found;
         this.car = new Car();
     }
 
@@ -77,35 +78,35 @@ public class Ad {
         this.status = status;
     }
 
-    public LocalDate getFound() {
+    public LocalDateTime getFound() {
         return found;
     }
 
-    public void setFound(LocalDate found) {
+    public void setFound(LocalDateTime found) {
         this.found = found;
     }
 
-    public LocalDate getUpdated() {
+    public LocalDateTime getUpdated() {
         return updated;
     }
 
-    public void setUpdated(LocalDate updated) {
+    public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
     }
 
-    public LocalDate getLastChecked() {
+    public LocalDateTime getLastChecked() {
         return lastChecked;
     }
 
-    public void setLastChecked(LocalDate lastChecked) {
+    public void setLastChecked(LocalDateTime lastChecked) {
         this.lastChecked = lastChecked;
     }
 
-    public LocalDate getSold() {
+    public LocalDateTime getSold() {
         return sold;
     }
 
-    public void setSold(LocalDate sold) {
+    public void setSold(LocalDateTime sold) {
         this.sold = sold;
     }
 
