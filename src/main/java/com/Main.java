@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args){
-        JsonStore jsonStore = new JsonStore();;
+        JsonStore jsonStore = new JsonStore();
         HashMap<String, Ad> store = jsonStore.loadData();
 
 
@@ -19,7 +19,7 @@ public class Main {
         IndAd indAd = new IndAd(2, store);
         Manager manager = new Manager(15, store);
 
-        Saver saver = new Saver();
+        Saver saver = new Saver(jsonStore);
 
         front.start();
         indAd.start();

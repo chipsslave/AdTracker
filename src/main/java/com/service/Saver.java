@@ -4,8 +4,13 @@ import com.db.JsonStore;
 
 public class Saver extends Thread{
 
+    private JsonStore jsonStore;
+
+    public Saver(JsonStore jsonStore){
+        this.jsonStore = jsonStore;
+    }
+
     public void save(){
-        JsonStore jsonStore = new JsonStore();
         jsonStore.saveData();
     }
 
