@@ -5,6 +5,8 @@
  */
 package com.model;
 
+import com.model.enums.*;
+
 /**
  *
  * @author mselv
@@ -30,35 +32,6 @@ public class Car {
     private CarBodyType bodyType;
 
     public Car() {
-    }
-
-    public Car(String makeYear, CarFuelType fuelType, CarGearBox gearbox, String make, String model, CarBodyType bodyType) {
-        this.makeYear = makeYear;
-        this.fuelType = fuelType;
-        this.gearbox = gearbox;
-        this.make = make;
-        this.model = model;
-        this.bodyType = bodyType;
-    }
-
-    public Car(String makeYear, CarFuelType fuelType, CarGearBox gearbox, String enginePower, int mileage, String rimSize, CarWheelPosition wheelPosition, CarDrivenWheels driveTrain, int weight, String firstRegCountry, CarDefect defect, String mot, String vin, String make, String model, String engineSize, CarBodyType bodyType) {
-        this.makeYear = makeYear;
-        this.fuelType = fuelType;
-        this.gearbox = gearbox;
-        this.enginePower = enginePower;
-        this.mileage = mileage;
-        this.rimSize = rimSize;
-        this.wheelPosition = wheelPosition;
-        this.driveTrain = driveTrain;
-        this.weight = weight;
-        this.firstRegCountry = firstRegCountry;
-        this.defect = defect;
-        this.mot = mot;
-        this.vin = vin;
-        this.make = make;
-        this.model = model;
-        this.engineSize = engineSize;
-        this.bodyType = bodyType;
     }
 
     public String getMakeYear() {

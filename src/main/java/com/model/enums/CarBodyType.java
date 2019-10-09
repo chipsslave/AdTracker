@@ -3,14 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.model;
+package com.model.enums;
 
 /**
  *
  * @author mselv
  */
-public enum CarGearBox {
-    Automatic,
-    Manual,
-    Unknown
+public enum CarBodyType {
+    Saloon, 
+    Hetchback,
+    Wagon,
+    Minivan,
+    SUV,
+    Coupe,
+    Commercial,
+    Convertible,
+    Limousine,
+    PickUp,
+    PassengerVan,
+    Other    
 }

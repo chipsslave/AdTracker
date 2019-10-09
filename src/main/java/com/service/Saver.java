@@ -5,7 +5,8 @@ import com.db.JsonStore;
 public class Saver extends Thread{
 
     public void save(){
-        JsonStore.saveData();
+        JsonStore jsonStore = new JsonStore();
+        jsonStore.saveData();
     }
 
     @Override

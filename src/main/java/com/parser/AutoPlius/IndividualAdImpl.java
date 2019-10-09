@@ -1,7 +1,9 @@
 package com.parser.AutoPlius;
 
 import com.html.UrlContentReader;
-import com.model.*;
+import com.model.Ad;
+import com.model.AdAuthor;
+import com.model.enums.*;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;

@@ -9,41 +9,34 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 
 public class JsonStore {
-    private final static String FILE_PATH = "src/main/resources/data.json";
-    private final static Gson gson = new Gson();
+    private final String FILE_NAME = "data.json";
+    private final Gson GSON = new Gson();
 
-    public static HashMap<String, Ad> dataStore;
+    private HashMap<String, Ad> dataLocalStorage;
 
-    private JsonStore() throws IOException {
+    public JsonStore() {
     }
 
-    public static void loadData(){
-        Reader reader;
+    public HashMap<String, Ad> loadData(){
         try {
-            reader = new FileReader(FILE_PATH);
+            Reader reader = new FileReader(FILE_NAME);
             Type listType = new TypeToken<HashMap<String, Ad>>(){}.getType();
-
-            dataStore = gson.fromJson(reader, listType);
+            dataLocalStorage = GSON.fromJson(reader, listType);
             reader.close();
-        } catch (IOException e) {
+        } catch (IOException e){
             e.printStackTrace();
         }
-
-        if (dataStore == null){
-            dataStore = new HashMap<String, Ad>();
-        }
+        return dataLocalStorage;
     }
 
-    public static void saveData(){
-        Writer writer;
+    public void saveData(){
         try {
-            writer = new FileWriter(FILE_PATH, false);
-            gson.toJson(dataStore, writer);
+            Writer writer = new FileWriter(FILE_NAME, false);
+            GSON.toJson(dataLocalStorage, writer);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 }
