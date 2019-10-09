@@ -1,9 +1,10 @@
 package com.service;
 
 import com.model.Ad;
-import com.model.AdStatus;
+import com.model.enums.AdStatus;
 import com.parser.AutoPlius.IndividualAdImpl;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public class IndAd extends Thread{
@@ -18,13 +19,18 @@ public class IndAd extends Thread{
     }
 
     public void scraping(){
-        Ad ad = getIntroducedAd();
+        Ad ad = getAdToUpdate();
 
         if (ad != null){
             System.out.println("Parsing details for ad: " + ad.getAdUrl());
             IndividualAdImpl individualAd = new IndividualAdImpl(ad.getAdUrl());
             individualAd.parseAdFields(ad);
-            ad.setStatus(AdStatus.NEW);
+            if (ad.getStatus() == AdStatus.INTRODUCED){
+                ad.setStatus(AdStatus.NEW);
+            } else {
+                ad.setStatus(AdStatus.UPDATED);
+            }
+
         }
     }
 
@@ -43,10 +49,10 @@ public class IndAd extends Thread{
         }
     }
 
-    public Ad getIntroducedAd(){
+    public Ad getAdToUpdate(){
         if (adStore.values() != null){
             for (Ad ad : adStore.values()){
-                if (ad.getStatus() == AdStatus.INTRODUCED){
+                if (ad.getStatus() == AdStatus.INTRODUCED || ad.getUpdated().isBefore(LocalDateTime.now().minusDays(1))){
                     return ad;
                 }
             }

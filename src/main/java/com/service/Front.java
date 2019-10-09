@@ -1,7 +1,7 @@
 package com.service;
 
 import com.model.Ad;
-import com.model.AdStatus;
+import com.model.enums.AdStatus;
 import com.parser.AutoPlius.FrontPageImpl;
 import org.jsoup.nodes.Element;
 

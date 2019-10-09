@@ -5,6 +5,8 @@
  */
 package com.model;
 
+import com.model.enums.AdStatus;
+
 import java.time.LocalDateTime;
 import java.util.Arrays;
 

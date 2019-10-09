@@ -1,6 +1,7 @@
 package com.parser.AutoPlius;
 
-import com.model.*;
+import com.model.AdAuthor;
+import com.model.enums.*;
 
 import java.util.HashMap;
 
