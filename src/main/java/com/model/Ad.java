@@ -8,7 +8,6 @@ package com.model;
 import com.model.enums.AdStatus;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
 /**
  *
@@ -32,15 +31,13 @@ public class Ad {
     
     private String location;
     
-    private String[] images;
-    
     private String comment;
 
     public Ad() {
         this.car = new Car();
     }
 
-    public Ad(String adId, String adUrl, AdStatus status, LocalDateTime found) {
+    Ad(String adId, String adUrl, AdStatus status, LocalDateTime found) {
         this.adId = adId;
         this.adUrl = adUrl;
         this.status = status;
@@ -136,14 +133,6 @@ public class Ad {
         this.location = location;
     }
 
-    public String[] getImages() {
-        return images;
-    }
-
-    public void setImages(String[] images) {
-        this.images = images;
-    }
-
     public String getComment() {
         return comment;
     }
@@ -166,7 +155,6 @@ public class Ad {
                 ", price=" + price +
                 ", car=" + car +
                 ", location='" + location + '\'' +
-                ", images=" + Arrays.toString(images) +
                 ", comment='" + comment + '\'' +
                 '}';
     }

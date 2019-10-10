@@ -23,25 +23,13 @@ public class Manager extends Thread{
             for (Ad ad : adStore.values()){
                 if (ad.getStatus() == AdStatus.INTRODUCED){
                     newAds++;
-                } else if (ad.getStatus() == AdStatus.NEW){
+                } else if (ad.getStatus() == AdStatus.NEW || ad.getStatus() == AdStatus.UPDATED) {
                     updatedAds++;
                 }
             }
             System.out.println("Curently list holds in total of: " + adStore.size() + " records");
             System.out.println("Brand new ads: " + newAds);
             System.out.println("Updated ads: " + updatedAds);
-        }
-    }
-
-    @Override
-    public void run(){
-        while (true){
-            report();
-            try {
-                Thread.sleep(checkFrequencySeconds);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

@@ -31,7 +31,7 @@ public class Car {
     private String engineSize;
     private CarBodyType bodyType;
 
-    public Car() {
+    Car() {
     }
 
     public String getMakeYear() {

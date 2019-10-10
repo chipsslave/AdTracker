@@ -1,9 +1,11 @@
 package com.parser.AutoPlius;
 
-import com.html.UrlContentReader;
 import com.model.Ad;
 import com.model.AdAuthor;
+import com.model.ModelFactory;
 import com.model.enums.*;
+import com.parser.IndividualAd;
+import com.util.UrlContentReader;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -11,12 +13,12 @@ import org.jsoup.select.Elements;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
-public class IndividualAdImpl implements IndividualAd {
+public class AutoPliusIndividualAdImpl implements IndividualAd {
 
     private HashMap<String, String> adCarParams;
     private Document htmlContent;
 
-    public IndividualAdImpl(String target) {
+    public AutoPliusIndividualAdImpl(String target) {
         this.htmlContent = UrlContentReader.readContentInJsoupDocument(target);
         this.adCarParams = parseCarParams();
     }
@@ -35,7 +37,7 @@ public class IndividualAdImpl implements IndividualAd {
         String location = htmlContent.select("div[class=seller-contact-location]").text().trim();
         String phone = htmlContent.select("a[class=seller-phone-number]").text().trim();
 
-        return new AdAuthor(name, location, phone);
+        return ModelFactory.getAdAuthor(name, location, phone);
     }
 
     @Override
@@ -46,7 +48,7 @@ public class IndividualAdImpl implements IndividualAd {
 
     @Override
     public HashMap<String, String> parseCarParams() {
-        adCarParams = new HashMap<String, String>();
+        adCarParams = new HashMap<>();
 
         Elements paramRows = htmlContent.select("div[class=parameter-row]");
         for (Element paramRow : paramRows){
@@ -67,22 +69,6 @@ public class IndividualAdImpl implements IndividualAd {
     @Override
     public String parseLocation() {
         return htmlContent.select("div[class=seller-contact-location]").text().trim();
-    }
-
-    @Override
-    public String[] parseImg() {
-        Elements gallery = htmlContent.select("div[class=thumbnail]");
-        String[] images = new String[gallery.size()];
-        int i = 0;
-        for (Element imageElement : gallery){
-            String imageUrl = imageElement.attr("style");
-            imageUrl = imageUrl.replace("/ann_4_", "/ann_25_");
-            imageUrl = imageUrl.replace("background-image: url('", "");
-            imageUrl = imageUrl.replace("')", "");
-            images[i] = imageUrl;
-            i++;
-        }
-        return images;
     }
 
     @Override
@@ -277,7 +263,6 @@ public class IndividualAdImpl implements IndividualAd {
         ad.setAuthor(parseAdAuthor());
         ad.setPrice(parsePrice());
         ad.setLocation(parseLocation());
-        ad.setImages(parseImg());
         ad.setComment(parseComment());
         ad.getCar().setMakeYear(parseMakeYear());
         ad.getCar().setFuelType(parseFuelType());

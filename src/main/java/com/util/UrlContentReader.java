@@ -1,4 +1,4 @@
-package com.html;
+package com.util;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

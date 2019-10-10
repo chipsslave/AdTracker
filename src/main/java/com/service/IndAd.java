@@ -2,12 +2,12 @@ package com.service;
 
 import com.model.Ad;
 import com.model.enums.AdStatus;
-import com.parser.AutoPlius.IndividualAdImpl;
+import com.parser.AutoPlius.AutoPliusIndividualAdImpl;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
-public class IndAd extends Thread{
+public class IndAd {
     private final int secondInMiliseconds = 1000;
 
     private int checkFrequencySeconds;
@@ -23,7 +23,7 @@ public class IndAd extends Thread{
 
         if (ad != null){
             System.out.println("Parsing details for ad: " + ad.getAdUrl());
-            IndividualAdImpl individualAd = new IndividualAdImpl(ad.getAdUrl());
+            AutoPliusIndividualAdImpl individualAd = new AutoPliusIndividualAdImpl(ad.getAdUrl());
             individualAd.parseAdFields(ad);
             if (ad.getStatus() == AdStatus.INTRODUCED){
                 ad.setStatus(AdStatus.NEW);
@@ -31,21 +31,6 @@ public class IndAd extends Thread{
                 ad.setStatus(AdStatus.UPDATED);
             }
 
-        }
-    }
-
-    @Override
-    public void run(){
-        while (true){
-            if (adStore != null){
-                scraping();
-            }
-            try {
-                //System.out.println("Sleeping for: " + checkFrequencySeconds / 1000 + " seconds.");
-                Thread.sleep(checkFrequencySeconds);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 

@@ -14,10 +14,10 @@ public class AdAuthor {
     private String location;
     private String phone;
 
-    public AdAuthor() {
+    AdAuthor() {
     }
 
-    public AdAuthor(String name, String location, String phone) {
+    AdAuthor(String name, String location, String phone) {
         this.name = name;
         this.location = location;
         this.phone = phone;

@@ -1,4 +1,4 @@
-package com.parser.AutoPlius;
+package com.parser;
 
 import com.model.AdAuthor;
 import com.model.enums.*;
@@ -11,7 +11,6 @@ public interface IndividualAd {
     AdStatus parseAdStatus();
     int parsePrice();
     String parseLocation();
-    String[] parseImg();
     String parseComment();
 
     HashMap<String, String> parseCarParams();

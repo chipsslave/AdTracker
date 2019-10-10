@@ -1,15 +1,16 @@
 package com.parser.AutoPlius;
 
-import com.html.UrlContentReader;
+import com.parser.FrontPage;
+import com.util.UrlContentReader;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class FrontPageImpl implements FrontPage {
+public class AutoPliusFrontPageImpl implements FrontPage {
 
     private Elements adsInHtml;
 
-    public FrontPageImpl(String target) {
+    public AutoPliusFrontPageImpl(String target) {
         Document urlJsoupContent = UrlContentReader.readContentInJsoupDocument(target);
         this.adsInHtml = urlJsoupContent.select("a[class^=announcement-item]");
     }

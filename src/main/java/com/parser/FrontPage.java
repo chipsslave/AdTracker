@@ -1,4 +1,4 @@
-package com.parser.AutoPlius;
+package com.parser;
 
 import org.jsoup.nodes.Element;
 
