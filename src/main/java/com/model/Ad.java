@@ -35,6 +35,7 @@ public class Ad {
     private String comment;
 
     Ad() {
+        this.car = new Car();
     }
 
     Ad(String adId, String adUrl, AdStatus status, LocalDateTime found) {

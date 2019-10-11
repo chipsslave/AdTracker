@@ -3,9 +3,11 @@ package com.storage.db;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.model.Ad;
+import com.model.enums.AdStatus;
 
 import java.io.*;
 import java.lang.reflect.Type;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -91,5 +93,16 @@ public class GsonDataBaseImpl implements DataBase {
 
     private Map<String, Ad> translateListToMap(List<Ad> all) {
         return all.stream().collect(Collectors.toMap(Ad::getAdId, item -> item));
+    }
+
+    public Ad getAdToUpdate() {
+        for (Ad ad : dataLocalStorage.values()) {
+            if (ad.getStatus() != AdStatus.DELETED || ad.getStatus() != AdStatus.SOLD) {
+                if (ad.getUpdated().isBefore(LocalDateTime.now().minusDays(1))) {
+                    return ad;
+                }
+            }
+        }
+        return null;
     }
 }

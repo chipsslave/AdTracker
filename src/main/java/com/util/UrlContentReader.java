@@ -20,6 +20,9 @@ public class UrlContentReader {
 
         StringBuilder builder = new StringBuilder();
         try {
+            // TODO does not work with response codes above 400
+
+
             BufferedReader in = new BufferedReader(new InputStreamReader((new URL(target)).openStream()));
             in.lines().forEachOrdered(ln -> builder.append(ln + "\n"));
             in.close();
