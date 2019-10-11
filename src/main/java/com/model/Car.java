@@ -7,6 +7,8 @@ package com.model;
 
 import com.model.enums.*;
 
+import java.util.Objects;
+
 /**
  *
  * @author mselv
@@ -168,5 +170,34 @@ public class Car {
 
     public void setBodyType(CarBodyType bodyType) {
         this.bodyType = bodyType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return mileage == car.mileage &&
+                weight == car.weight &&
+                Objects.equals(makeYear, car.makeYear) &&
+                fuelType == car.fuelType &&
+                gearbox == car.gearbox &&
+                Objects.equals(enginePower, car.enginePower) &&
+                Objects.equals(rimSize, car.rimSize) &&
+                wheelPosition == car.wheelPosition &&
+                driveTrain == car.driveTrain &&
+                Objects.equals(firstRegCountry, car.firstRegCountry) &&
+                defect == car.defect &&
+                Objects.equals(mot, car.mot) &&
+                Objects.equals(vin, car.vin) &&
+                Objects.equals(make, car.make) &&
+                Objects.equals(model, car.model) &&
+                Objects.equals(engineSize, car.engineSize) &&
+                bodyType == car.bodyType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(makeYear, fuelType, gearbox, enginePower, mileage, rimSize, wheelPosition, driveTrain, weight, firstRegCountry, defect, mot, vin, make, model, engineSize, bodyType);
     }
 }

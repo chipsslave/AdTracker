@@ -1,19 +1,19 @@
 package com.parser;
 
+import com.model.Ad;
 import com.model.AdAuthor;
 import com.model.enums.*;
 
-import java.util.HashMap;
-
 public interface IndividualAd {
 
+    String parseAdId();
     AdAuthor parseAdAuthor();
     AdStatus parseAdStatus();
     int parsePrice();
     String parseLocation();
     String parseComment();
 
-    HashMap<String, String> parseCarParams();
+    void parseCarParams();
 
     String parseMakeYear();
     CarFuelType parseFuelType();
@@ -32,5 +32,7 @@ public interface IndividualAd {
     String parseModel();
     String parseEngineSize();
     CarBodyType parseBodyType();
+
+    Ad getParsedAd();
 
 }

@@ -1,11 +1,10 @@
-package com.parser.AutoPlius;
+package com.parser.jsoup.AutoPlius.page.inside;
 
 import com.model.Ad;
 import com.model.AdAuthor;
 import com.model.ModelFactory;
 import com.model.enums.*;
 import com.parser.IndividualAd;
-import com.util.UrlContentReader;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -13,93 +12,96 @@ import org.jsoup.select.Elements;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
-public class AutoPliusIndividualAdImpl implements IndividualAd {
+public class AutoPliusIndividualAdPageParser implements IndividualAd {
 
-    private HashMap<String, String> adCarParams;
-    private Document htmlContent;
+    private Document pageContentInHtml;
+    private HashMap<String, String> adCarParams = new HashMap<>();
 
-    public AutoPliusIndividualAdImpl(String target) {
-        this.htmlContent = UrlContentReader.readContentInJsoupDocument(target);
-        this.adCarParams = parseCarParams();
+    AutoPliusIndividualAdPageParser(Document pageContentInHtml) {
+        this.pageContentInHtml = pageContentInHtml;
+        parseCarParams();
     }
 
-    public HashMap<String, String> getAdCarParams() {
-        return adCarParams;
-    }
-
-    public Document getHtmlContent() {
-        return htmlContent;
+    @Override
+    public String parseAdId() {
+        String adId = pageContentInHtml.select("li[class=announcement-id]").text().trim();
+        adId = adId.replaceAll("[^\\d.]", "").trim();
+        return adId;
     }
 
     @Override
     public AdAuthor parseAdAuthor() {
-        String name = htmlContent.select("div[class=seller-contact-name]").text().trim();
-        String location = htmlContent.select("div[class=seller-contact-location]").text().trim();
-        String phone = htmlContent.select("a[class=seller-phone-number]").text().trim();
+        String name = pageContentInHtml.select("div[class=seller-contact-name]").text().trim();
+        String location = pageContentInHtml.select("div[class=seller-contact-location]").text().trim();
+        String phone = pageContentInHtml.select("a[class=seller-phone-number]").text().trim();
 
-        return ModelFactory.getAdAuthor(name, location, phone);
+        return ModelFactory.getNewAdAuthorInstance(name, location, phone);
     }
 
     @Override
     public AdStatus parseAdStatus() {
-        // TODO status
-        return null;
-    }
-
-    @Override
-    public HashMap<String, String> parseCarParams() {
-        adCarParams = new HashMap<>();
-
-        Elements paramRows = htmlContent.select("div[class=parameter-row]");
-        for (Element paramRow : paramRows){
-            String paramLabel = paramRow.select("div[class=parameter-label]").text().trim();
-            String paramValue = paramRow.select("div[class=parameter-value]").text().trim();
-            adCarParams.put(paramLabel, paramValue);
+        Element status = pageContentInHtml.selectFirst("div[class=error-msg]");
+        if (status != null) {
+            String message = status.select("div[class=msg-subject]").text().trim();
+            if (message.startsWith("Advertisement does not exist")) {
+                return AdStatus.DELETED;
+            }
         }
-        return adCarParams;
+        return AdStatus.UPDATED;
     }
 
     @Override
     public int parsePrice() {
-        String priceInString = htmlContent.select("div[class=price]").text();
+        String priceInString = pageContentInHtml.select("div[class=price]").text();
         priceInString = priceInString.replaceAll("[^\\d.]", "").trim();
         return Integer.parseInt(priceInString);
     }
 
     @Override
     public String parseLocation() {
-        return htmlContent.select("div[class=seller-contact-location]").text().trim();
+        return pageContentInHtml.select("div[class=seller-contact-location]").text().trim();
     }
 
     @Override
     public String parseComment() {
-        return htmlContent.select("div[class=announcement-description]").text().trim();
+        return pageContentInHtml.select("div[class=announcement-description]").text().trim();
+    }
+
+    @Override
+    public void parseCarParams() {
+        Elements paramRows = pageContentInHtml.select("div[class=parameter-row]");
+        for (Element paramRow : paramRows) {
+            String paramLabel = paramRow.select("div[class=parameter-label]").text().trim();
+            String paramValue = paramRow.select("div[class=parameter-value]").text().trim();
+            adCarParams.put(paramLabel, paramValue);
+        }
     }
 
     @Override
     public String parseMakeYear() {
-        if (getAdCarParams().get("Date of manufacture") == null){
+        String makeYear = adCarParams.get("Date of manufacture");
+        if (makeYear == null) {
             return "";
         }
-        return getAdCarParams().get("Date of manufacture");
+        return makeYear;
     }
 
     @Override
     public CarFuelType parseFuelType() {
-        String fuelType = getAdCarParams().get("Fuel type");
-        if (fuelType == null){
+        String fuelType = adCarParams.get("Fuel type");
+        if (fuelType == null) {
             return CarFuelType.Other;
         }
-        if (fuelType.equals("Petrol / LPG")){
+        if (fuelType.equals("Petrol / LPG")) {
             return CarFuelType.PetrolLpg;
         }
-        if (fuelType.equals("Petrol / electricity")){
+        if (fuelType.equals("Petrol / electricity")) {
             return CarFuelType.PetrolElectricity;
         }
-        if (fuelType.equals("Diesel / electricity")){
+        if (fuelType.equals("Diesel / electricity")) {
             return CarFuelType.DieselElectricity;
         }
-        if (fuelType.equals("Bioethanol (E85)")){
+        if (fuelType.equals("Bioethanol (E85)")) {
             return CarFuelType.E85;
         }
 
@@ -108,8 +110,8 @@ public class AutoPliusIndividualAdImpl implements IndividualAd {
 
     @Override
     public CarGearBox parseGearBox() {
-        String gearBox = getAdCarParams().get("Gearbox");
-        if (gearBox == null){
+        String gearBox = adCarParams.get("Gearbox");
+        if (gearBox == null) {
             return CarGearBox.Unknown;
         }
         return CarGearBox.valueOf(gearBox);
@@ -117,16 +119,17 @@ public class AutoPliusIndividualAdImpl implements IndividualAd {
 
     @Override
     public String parseEnginePower() {
-        if (getAdCarParams().get("Engine") == null){
+        String enginePower = adCarParams.get("Engine");
+        if (enginePower == null) {
             return "";
         }
-        return getAdCarParams().get("Engine");
+        return enginePower;
     }
 
     @Override
     public int parseMileage() {
-        String miles = getAdCarParams().get("Mileage");
-        if (miles == null){
+        String miles = adCarParams.get("Mileage");
+        if (miles == null) {
             return 0;
         }
         miles = miles.replaceAll("[^\\d.]", "").trim();
@@ -135,7 +138,7 @@ public class AutoPliusIndividualAdImpl implements IndividualAd {
 
     @Override
     public String parseRimSize() {
-        String rimSize = getAdCarParams().get("Wheel size");
+        String rimSize = adCarParams.get("Wheel size");
         if (rimSize == null) {
             return "";
         }
@@ -144,13 +147,13 @@ public class AutoPliusIndividualAdImpl implements IndividualAd {
 
     @Override
     public CarWheelPosition parseWheelPosition() {
-        String wheelPosition = getAdCarParams().get("Steering wheel");
-        if (wheelPosition == null){
+        String wheelPosition = adCarParams.get("Steering wheel");
+        if (wheelPosition == null) {
             return CarWheelPosition.Unknown;
         }
-        if (wheelPosition.startsWith("Left")){
+        if (wheelPosition.startsWith("Left")) {
             return CarWheelPosition.Left;
-        } else if (wheelPosition.startsWith("Right")){
+        } else if (wheelPosition.startsWith("Right")) {
             return CarWheelPosition.Right;
         }
         return null;
@@ -158,16 +161,16 @@ public class AutoPliusIndividualAdImpl implements IndividualAd {
 
     @Override
     public CarDrivenWheels parseDriveTrain() {
-        String wheelPosition = getAdCarParams().get("Driven wheels");
-        if (wheelPosition == null){
+        String wheelPosition = adCarParams.get("Driven wheels");
+        if (wheelPosition == null) {
             return CarDrivenWheels.Unknown;
         }
 
-        if (wheelPosition.startsWith("Front")){
+        if (wheelPosition.startsWith("Front")) {
             return CarDrivenWheels.FrontDrive;
-        } else if (wheelPosition.startsWith("Rear")){
+        } else if (wheelPosition.startsWith("Rear")) {
             return CarDrivenWheels.RearDrive;
-        } else if (wheelPosition.startsWith("All")){
+        } else if (wheelPosition.startsWith("All")) {
             return CarDrivenWheels.AllWheelDrive;
         }
         return null;
@@ -175,8 +178,8 @@ public class AutoPliusIndividualAdImpl implements IndividualAd {
 
     @Override
     public int parseWeight() {
-        String carWeight = getAdCarParams().get("Kerb weight, kg");
-        if (carWeight == null){
+        String carWeight = adCarParams.get("Kerb weight, kg");
+        if (carWeight == null) {
             return 0;
         }
         return Integer.parseInt(carWeight);
@@ -184,15 +187,16 @@ public class AutoPliusIndividualAdImpl implements IndividualAd {
 
     @Override
     public String parseFirstRefCountry() {
-        if (getAdCarParams().get("First registration country") == null){
+        String firstRefCountry = adCarParams.get("First registration country");
+        if (firstRefCountry == null) {
             return "";
         }
-        return getAdCarParams().get("First registration country");
+        return firstRefCountry;
     }
 
     @Override
     public CarDefect parseDefect() {
-        String damage = getAdCarParams().get("Damage");
+        String damage = adCarParams.get("Damage");
         if (damage == null) {
             return CarDefect.NoDamage;
         }
@@ -228,10 +232,11 @@ public class AutoPliusIndividualAdImpl implements IndividualAd {
 
     @Override
     public String parseVin() {
-        if (getAdCarParams().get("VIN number") == null){
+        String vin = adCarParams.get("VIN number");
+        if (vin == null) {
             return "";
         }
-        return getAdCarParams().get("VIN number");
+        return vin;
     }
 
     @Override
@@ -258,12 +263,16 @@ public class AutoPliusIndividualAdImpl implements IndividualAd {
         return null;
     }
 
-    public void parseAdFields(Ad ad){
+    @Override
+    public Ad getParsedAd() {
+        Ad ad = ModelFactory.getNewBlankAdInstance();
 
+        ad.setAdId(parseAdId());
         ad.setAuthor(parseAdAuthor());
         ad.setPrice(parsePrice());
         ad.setLocation(parseLocation());
         ad.setComment(parseComment());
+
         ad.getCar().setMakeYear(parseMakeYear());
         ad.getCar().setFuelType(parseFuelType());
         ad.getCar().setGearbox(parseGearBox());
@@ -278,5 +287,7 @@ public class AutoPliusIndividualAdImpl implements IndividualAd {
         ad.getCar().setVin(parseVin());
 
         ad.setUpdated(LocalDateTime.now());
+
+        return ad;
     }
 }
