@@ -1,5 +1,7 @@
 package com;
 
+import com.model.Ad;
+import com.parser.jsoup.AutoPlius.page.inside.AutoPliusIndividualAdPageImpl;
 import com.storage.db.DataBaseFactory;
 import com.storage.db.GsonDataBaseImpl;
 import com.util.UrlContentReader;
@@ -11,29 +13,19 @@ public class Main {
     // https://en.autoplius.lt/ads/volkswagen-touareg-4-1-l-suv-off-road-2010-diesel-9605847.html
 
     public static void main(String[] args){
+        Main main = new Main();
         GsonDataBaseImpl localJsonStorage = DataBaseFactory.getDataBaseInstance();
 
-        Document pageHtml = UrlContentReader.readContentInJsoupDocument("https://autoplius.lt/skelbimai/toyota-corolla-1-6-l-hecbekas-2003-benzinas-9652197.html");
+        while (localJsonStorage.getAdToUpdate() != null) {
+            Ad ad = localJsonStorage.getAdToUpdate();
+            System.out.println(ad.getAdUrl());
+            Document pageInHtml = UrlContentReader.readContentInJsoupDocument(ad.getAdUrl());
+            AutoPliusIndividualAdPageImpl<GsonDataBaseImpl> autoPliusIndividualAdPage = new AutoPliusIndividualAdPageImpl<>(pageInHtml, localJsonStorage, ad);
+            autoPliusIndividualAdPage.checkAdInWebsite();
+        }
 
-//        AutoPliusFrontPageImpl<GsonDataBaseImpl> autoPliusFrontPage = new AutoPliusFrontPageImpl<>(pageHtml, localJsonStorage);
-//
-//        System.out.println(autoPliusFrontPage.countOfAdsFound());
-//        autoPliusFrontPage.collectNewAds();
-//        localJsonStorage.commit();
+        localJsonStorage.commit();
 
-//        AutoPliusIndividualAdPageImpl<GsonDataBaseImpl> autoPliusIndividualAdPage = new AutoPliusIndividualAdPageImpl<>(pageHtml, localJsonStorage);
-//        System.out.println(autoPliusIndividualAdPage.parseAdId());
-
-
-//        IndAd indAd = new IndAd(2, store);
-//        Manager manager = new Manager(15, store);
-//
-//        Saver saver = new Saver(localJsonStorage);
-//
-//        front.start();
-//        indAd.start();
-//        manager.start();
-//        saver.start();
 
     }
 }

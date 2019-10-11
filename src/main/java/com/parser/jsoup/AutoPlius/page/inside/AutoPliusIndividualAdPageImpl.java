@@ -21,6 +21,7 @@ public class AutoPliusIndividualAdPageImpl<T extends DataBase> extends AutoPlius
             ad.setStatus(AdStatus.DELETED);
         } else if (parseAdStatus() == AdStatus.UPDATED) {
             Ad newAd = getParsedAd();
+            newAd.setFound(ad.getFound());
             dataBase.addNew(newAd);
         }
 
