@@ -6,6 +6,10 @@ import java.time.LocalDateTime;
 
 public class ModelFactory {
 
+    public static Ad getNewBlankAdInstance() {
+        return new Ad();
+    }
+
     public static Ad getNewAdInstance(String adId, String adUrl, AdStatus status, LocalDateTime found) {
         return new Ad(adId, adUrl, status, found);
     }

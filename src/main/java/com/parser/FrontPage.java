@@ -1,6 +1,7 @@
 package com.parser;
 
 import com.model.Ad;
+import com.model.enums.AdStatus;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -17,4 +18,6 @@ public interface FrontPage {
     Elements getAdsInHtml();
 
     List<Ad> parseAds();
+
+    AdStatus parseAdStatus(Element adInHtml);
 }

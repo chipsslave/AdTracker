@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args){
         GsonDataBaseImpl localJsonStorage = DataBaseFactory.getDataBaseInstance();
 
-        Document pageHtml = UrlContentReader.readContentInJsoupDocument("https://autoplius.lt/skelbimai/naudoti-automobiliai");
+        Document pageHtml = UrlContentReader.readContentInJsoupDocument("https://autoplius.lt/skelbimai/toyota-corolla-1-6-l-hecbekas-2003-benzinas-9652197.html");
 
 //        AutoPliusFrontPageImpl<GsonDataBaseImpl> autoPliusFrontPage = new AutoPliusFrontPageImpl<>(pageHtml, localJsonStorage);
 //
@@ -21,7 +21,8 @@ public class Main {
 //        autoPliusFrontPage.collectNewAds();
 //        localJsonStorage.commit();
 
-
+//        AutoPliusIndividualAdPageImpl<GsonDataBaseImpl> autoPliusIndividualAdPage = new AutoPliusIndividualAdPageImpl<>(pageHtml, localJsonStorage);
+//        System.out.println(autoPliusIndividualAdPage.parseAdId());
 
 
 //        IndAd indAd = new IndAd(2, store);

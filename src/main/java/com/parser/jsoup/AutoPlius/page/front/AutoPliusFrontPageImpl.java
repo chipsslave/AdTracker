@@ -1,5 +1,7 @@
 package com.parser.jsoup.AutoPlius.page.front;
 
+import com.model.Ad;
+import com.model.enums.AdStatus;
 import com.storage.db.DataBase;
 import org.jsoup.nodes.Document;
 
@@ -8,17 +10,24 @@ public class AutoPliusFrontPageImpl<T extends DataBase> extends AutoPliusFrontPa
 
     private T dataBase;
 
-    public AutoPliusFrontPageImpl(Document pageContentInHtml, T database) {
+    public AutoPliusFrontPageImpl(Document pageContentInHtml, T dataBase) {
         super(pageContentInHtml);
-        this.dataBase = database;
+        this.dataBase = dataBase;
     }
 
     public void collectNewAds() {
         parseAds().forEach(ad -> {
-            if (dataBase.getById(ad.getAdId()) == null) {
+            if (!adExistsInStorage(ad)) {
                 dataBase.addNew(ad);
-                System.out.println("new ad found: " + ad.getAdUrl());
             }
+            if (ad.getStatus() == AdStatus.SOLD) {
+                dataBase.getById(ad.getAdId()).setStatus(ad.getStatus());
+            }
+
         });
+    }
+
+    public boolean adExistsInStorage(Ad ad) {
+        return dataBase.getById(ad.getAdId()) != null;
     }
 }

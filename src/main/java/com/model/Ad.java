@@ -8,6 +8,7 @@ package com.model;
 import com.model.enums.AdStatus;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  *
@@ -34,13 +35,6 @@ public class Ad {
     private String comment;
 
     Ad() {
-        this.car = new Car();
-    }
-
-    Ad(String adId, String adUrl) {
-        this.adId = adId;
-        this.adUrl = adUrl;
-        this.car = new Car();
     }
 
     Ad(String adId, String adUrl, AdStatus status, LocalDateTime found) {
@@ -163,5 +157,29 @@ public class Ad {
                 ", location='" + location + '\'' +
                 ", comment='" + comment + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ad ad = (Ad) o;
+        return price == ad.price &&
+                Objects.equals(adId, ad.adId) &&
+                Objects.equals(adUrl, ad.adUrl) &&
+                Objects.equals(author, ad.author) &&
+                status == ad.status &&
+                Objects.equals(found, ad.found) &&
+                Objects.equals(updated, ad.updated) &&
+                Objects.equals(lastChecked, ad.lastChecked) &&
+                Objects.equals(sold, ad.sold) &&
+                Objects.equals(car, ad.car) &&
+                Objects.equals(location, ad.location) &&
+                Objects.equals(comment, ad.comment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(adId, adUrl, author, status, found, updated, lastChecked, sold, price, car, location, comment);
     }
 }

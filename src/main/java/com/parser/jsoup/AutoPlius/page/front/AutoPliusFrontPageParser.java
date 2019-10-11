@@ -46,8 +46,17 @@ public class AutoPliusFrontPageParser implements FrontPage {
     public List<Ad> parseAds() {
         List<Ad> adList = new ArrayList<>();
         getAdsInHtml().forEach(adInHtml -> {
-            adList.add(ModelFactory.getNewAdInstance(parseAdId(adInHtml), parseAdUrl(adInHtml), AdStatus.INTRODUCED, LocalDateTime.now()));
+            adList.add(ModelFactory.getNewAdInstance(parseAdId(adInHtml), parseAdUrl(adInHtml), parseAdStatus(adInHtml), LocalDateTime.now()));
         });
         return adList;
+    }
+
+    @Override
+    public AdStatus parseAdStatus(Element adInHtml) {
+        String adStatus = adInHtml.select("div[class^=announcement-badge]").text().trim();
+        if (adStatus.equals("Sold!")) {
+            return AdStatus.SOLD;
+        }
+        return AdStatus.INTRODUCED;
     }
 }
