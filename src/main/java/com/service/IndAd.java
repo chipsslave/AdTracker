@@ -2,7 +2,7 @@ package com.service;
 
 import com.model.Ad;
 import com.model.enums.AdStatus;
-import com.parser.AutoPlius.AutoPliusIndividualAdImpl;
+import com.parser.jsoup.AutoPlius.page.inside.AutoPliusIndividualAdImpl;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;

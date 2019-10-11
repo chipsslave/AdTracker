@@ -1,4 +1,4 @@
-package com.parser.AutoPlius;
+package com.parser.jsoup.AutoPlius.page.inside;
 
 import com.model.Ad;
 import com.model.AdAuthor;
@@ -37,7 +37,7 @@ public class AutoPliusIndividualAdImpl implements IndividualAd {
         String location = htmlContent.select("div[class=seller-contact-location]").text().trim();
         String phone = htmlContent.select("a[class=seller-phone-number]").text().trim();
 
-        return ModelFactory.getAdAuthor(name, location, phone);
+        return ModelFactory.getNewAdAuthorInstance(name, location, phone);
     }
 
     @Override

@@ -1,8 +1,9 @@
 package com;
 
-import com.model.Ad;
 import com.storage.db.DataBaseFactory;
 import com.storage.db.GsonDataBaseImpl;
+import com.util.UrlContentReader;
+import org.jsoup.nodes.Document;
 
 
 public class Main {
@@ -12,11 +13,17 @@ public class Main {
     public static void main(String[] args){
         GsonDataBaseImpl localJsonStorage = DataBaseFactory.getDataBaseInstance();
 
-        for (Ad ad : localJsonStorage.getAll()) {
-            System.out.println(ad.getAdId());
-        }
+        Document pageHtml = UrlContentReader.readContentInJsoupDocument("https://autoplius.lt/skelbimai/naudoti-automobiliai");
 
-//        Front front = new Front(1, 2, store);
+//        AutoPliusFrontPageImpl<GsonDataBaseImpl> autoPliusFrontPage = new AutoPliusFrontPageImpl<>(pageHtml, localJsonStorage);
+//
+//        System.out.println(autoPliusFrontPage.countOfAdsFound());
+//        autoPliusFrontPage.collectNewAds();
+//        localJsonStorage.commit();
+
+
+
+
 //        IndAd indAd = new IndAd(2, store);
 //        Manager manager = new Manager(15, store);
 //

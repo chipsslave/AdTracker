@@ -25,17 +25,10 @@ public class GsonDataBaseImpl implements DataBase {
         this.dataLocalStorage = translateListToMap(getAll());
     }
 
-//    public Map<String, Ad> getDataLocalStorage() {
-//        return dataLocalStorage;
-//    }
-
     @Override
     public Ad addNew(Ad ad) {
-        if (getById(ad.getAdId()) == null) {
-            dataLocalStorage.put(ad.getAdId(), ad);
-            return ad;
-        }
-        return null;
+        dataLocalStorage.put(ad.getAdId(), ad);
+        return ad;
     }
 
     @Override

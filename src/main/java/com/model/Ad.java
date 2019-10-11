@@ -33,7 +33,13 @@ public class Ad {
     
     private String comment;
 
-    public Ad() {
+    Ad() {
+        this.car = new Car();
+    }
+
+    Ad(String adId, String adUrl) {
+        this.adId = adId;
+        this.adUrl = adUrl;
         this.car = new Car();
     }
 
