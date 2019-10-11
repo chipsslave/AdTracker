@@ -11,15 +11,12 @@ import java.util.HashMap;
 
 public class AutoPliusFront extends AutoPliusFrontPageImpl {
     private final String autoPliusUrl = "https://en.autoplius.lt/ads/used-cars?page_nr=1";
-    private final int MINUTE_IN_MILISECONDS = 60000;
-    private final int SECOND_IN_MILISECONDS = 1000;
 
     private int checkFrequencyMinutes;
     private HashMap<String, Ad> adStore;
 
-    public AutoPliusFront(String target, int checkFrequencyMinutes, HashMap<String, Ad> adStore) {
+    public AutoPliusFront(String target, HashMap<String, Ad> adStore) {
         super(target);
-        this.checkFrequencyMinutes = checkFrequencyMinutes * MINUTE_IN_MILISECONDS;
         this.adStore = adStore;
     }
 
