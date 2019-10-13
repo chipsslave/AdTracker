@@ -7,25 +7,28 @@ import org.jsoup.nodes.Document;
 
 import java.time.LocalDateTime;
 
-public class AutoPliusIndividualAdPageImpl<T extends DataBase> extends AutoPliusIndividualAdPageParser {
+class AutoPliusIndividualAdPageImpl<T extends DataBase> extends AutoPliusIndividualAdPageParser {
 
     private T dataBase;
     private Ad ad;
 
-    public AutoPliusIndividualAdPageImpl(Document pageContentInHtml, T dataBase, Ad ad) {
+    AutoPliusIndividualAdPageImpl(Document pageContentInHtml, T dataBase, Ad ad) {
         super(pageContentInHtml);
         this.dataBase = dataBase;
         this.ad = ad;
     }
 
-    public void checkAdInWebsite() {
+    void checkAdAgainstWebsite() {
+
         if (parseAdStatus() == AdStatus.SOLD) {
             ad.setStatus(AdStatus.SOLD);
             ad.setSold(LocalDateTime.now());
         } else if (parseAdStatus() == AdStatus.UPDATED) {
-            Ad newAd = getParsedAd();
-            newAd.setFound(ad.getFound());
-            dataBase.addNew(newAd);
+            Ad parsedAd = getParsedAd();
+            parsedAd.setFound(ad.getFound());
+            parsedAd.setLastChecked(LocalDateTime.now());
+            parsedAd.setStatus(AdStatus.UPDATED);
+            dataBase.addNew(parsedAd);
         }
 
 

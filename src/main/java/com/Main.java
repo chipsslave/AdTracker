@@ -1,6 +1,7 @@
 package com;
 
 import com.parser.jsoup.AutoPlius.page.front.AutoPliusFrontPageService;
+import com.parser.jsoup.AutoPlius.page.inside.AutoPliusIndividualPageService;
 
 
 public class Main {
@@ -9,22 +10,18 @@ public class Main {
 
 
     public static void main(String[] args){
-
-
-
-//        while (localJsonStorage.getAdToUpdate() != null) {
-//            Ad ad = localJsonStorage.getAdToUpdate();
-//            System.out.println(ad.getAdUrl());
-//            Document pageInHtml = UrlContentReader.readContentInJsoupDocument(ad.getAdUrl());
-//            AutoPliusIndividualAdPageImpl<GsonDataBaseImpl> autoPliusIndividualAdPage = new AutoPliusIndividualAdPageImpl<>(pageInHtml, localJsonStorage, ad);
-//            autoPliusIndividualAdPage.checkAdInWebsite();
-//        }
-
-
+        Main main = new Main();
+        main.parseFront(50);
+        main.parseIndividualAds();
     }
 
-    public void parseFront(int numOfPages) {
+    private void parseFront(int numOfPages) {
         AutoPliusFrontPageService frontPageService = new AutoPliusFrontPageService();
         frontPageService.parseXManyPages(numOfPages);
+    }
+
+    private void parseIndividualAds() {
+        AutoPliusIndividualPageService autoPliusIndividualPageService = new AutoPliusIndividualPageService();
+        autoPliusIndividualPageService.updateAdsInDatabase();
     }
 }

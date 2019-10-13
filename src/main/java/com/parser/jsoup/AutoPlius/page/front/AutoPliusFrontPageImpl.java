@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 
-public class AutoPliusFrontPageImpl<T extends DataBase> extends AutoPliusFrontPageParser {
+class AutoPliusFrontPageImpl<T extends DataBase> extends AutoPliusFrontPageParser {
 
     private T dataBase;
 
@@ -30,7 +30,7 @@ public class AutoPliusFrontPageImpl<T extends DataBase> extends AutoPliusFrontPa
                         adInDatabase.setSold(LocalDateTime.now());
                     }
                 }
-            } else {
+            } else if (ad.getStatus() != AdStatus.SOLD) {
                 dataBase.addNew(ad);
             }
         }

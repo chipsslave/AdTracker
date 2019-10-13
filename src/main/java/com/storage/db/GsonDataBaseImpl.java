@@ -97,8 +97,11 @@ public class GsonDataBaseImpl implements DataBase {
 
     public Ad getAdToUpdate() {
         for (Ad ad : dataLocalStorage.values()) {
+            if (ad.getStatus() == AdStatus.INTRODUCED) {
+                return ad;
+            }
             if (ad.getStatus() != AdStatus.SOLD) {
-                if (ad.getUpdated().isBefore(LocalDateTime.now().minusHours(4))) {
+                if (ad.getUpdated().isBefore(LocalDateTime.now().minusDays(1))) {
                     return ad;
                 }
             }

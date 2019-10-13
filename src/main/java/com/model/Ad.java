@@ -169,14 +169,8 @@ public class Ad {
                 Objects.equals(adId, ad.adId) &&
                 Objects.equals(adUrl, ad.adUrl) &&
                 Objects.equals(author, ad.author) &&
-                status == ad.status &&
-                Objects.equals(found, ad.found) &&
-                Objects.equals(updated, ad.updated) &&
-                Objects.equals(lastChecked, ad.lastChecked) &&
-                Objects.equals(sold, ad.sold) &&
                 Objects.equals(car, ad.car) &&
-                Objects.equals(location, ad.location) &&
-                Objects.equals(comment, ad.comment);
+                Objects.equals(location, ad.location);
     }
 
     @Override

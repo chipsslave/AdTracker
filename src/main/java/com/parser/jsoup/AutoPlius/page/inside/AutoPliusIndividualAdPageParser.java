@@ -54,7 +54,8 @@ public class AutoPliusIndividualAdPageParser implements IndividualAd {
     public int parsePrice() {
         String priceInString = pageContentInHtml.select("div[class=price]").text();
         priceInString = priceInString.replaceAll("[^\\d.]", "").trim();
-        return Integer.parseInt(priceInString);
+
+        return (priceInString.equals("")) ? 0 : Integer.parseInt(priceInString);
     }
 
     @Override
