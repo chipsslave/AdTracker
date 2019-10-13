@@ -10,5 +10,5 @@ package com.model.enums;
  * @author mselv
  */
 public enum AdStatus {
-    INTRODUCED, NEW, UPDATED, SOLD, DELETED
+    INTRODUCED, NEW, UPDATED, SOLD
 }

@@ -5,29 +5,38 @@ import com.model.enums.AdStatus;
 import com.storage.db.DataBase;
 import org.jsoup.nodes.Document;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 
 public class AutoPliusFrontPageImpl<T extends DataBase> extends AutoPliusFrontPageParser {
 
     private T dataBase;
 
-    public AutoPliusFrontPageImpl(Document pageContentInHtml, T dataBase) {
+    AutoPliusFrontPageImpl(Document pageContentInHtml, T dataBase) {
         super(pageContentInHtml);
         this.dataBase = dataBase;
     }
 
-    public void collectNewAds() {
-        parseAds().forEach(ad -> {
-            if (!adExistsInStorage(ad)) {
+    void collectAds() {
+        List<Ad> parsedAds = parseAds();
+        for (Ad ad : parsedAds) {
+            Ad adInDatabase = dataBase.getById(ad.getAdId());
+
+            if (adExistsInStorage(ad)) {
+                if (ad.getStatus() == AdStatus.SOLD) {
+                    if (adInDatabase.getStatus() != AdStatus.SOLD) {
+                        adInDatabase.setStatus(AdStatus.SOLD);
+                        adInDatabase.setSold(LocalDateTime.now());
+                    }
+                }
+            } else {
                 dataBase.addNew(ad);
             }
-            if (ad.getStatus() == AdStatus.SOLD) {
-                dataBase.getById(ad.getAdId()).setStatus(ad.getStatus());
-            }
-
-        });
+        }
     }
 
-    public boolean adExistsInStorage(Ad ad) {
+    private boolean adExistsInStorage(Ad ad) {
         return dataBase.getById(ad.getAdId()) != null;
     }
 }

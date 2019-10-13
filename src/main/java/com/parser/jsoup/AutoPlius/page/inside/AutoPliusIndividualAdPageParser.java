@@ -44,7 +44,7 @@ public class AutoPliusIndividualAdPageParser implements IndividualAd {
         if (status != null) {
             String message = status.select("div[class=msg-subject]").text().trim();
             if (message.startsWith("Advertisement does not exist")) {
-                return AdStatus.DELETED;
+                return AdStatus.SOLD;
             }
         }
         return AdStatus.UPDATED;

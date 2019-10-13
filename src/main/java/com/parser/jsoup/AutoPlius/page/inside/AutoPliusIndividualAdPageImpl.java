@@ -5,6 +5,8 @@ import com.model.enums.AdStatus;
 import com.storage.db.DataBase;
 import org.jsoup.nodes.Document;
 
+import java.time.LocalDateTime;
+
 public class AutoPliusIndividualAdPageImpl<T extends DataBase> extends AutoPliusIndividualAdPageParser {
 
     private T dataBase;
@@ -17,8 +19,9 @@ public class AutoPliusIndividualAdPageImpl<T extends DataBase> extends AutoPlius
     }
 
     public void checkAdInWebsite() {
-        if (parseAdStatus() == AdStatus.DELETED) {
-            ad.setStatus(AdStatus.DELETED);
+        if (parseAdStatus() == AdStatus.SOLD) {
+            ad.setStatus(AdStatus.SOLD);
+            ad.setSold(LocalDateTime.now());
         } else if (parseAdStatus() == AdStatus.UPDATED) {
             Ad newAd = getParsedAd();
             newAd.setFound(ad.getFound());
