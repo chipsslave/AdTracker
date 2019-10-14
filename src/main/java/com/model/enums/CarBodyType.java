@@ -10,8 +10,8 @@ package com.model.enums;
  * @author mselv
  */
 public enum CarBodyType {
-    Saloon, 
-    Hetchback,
+    Saloon,
+    Hatchback,
     Wagon,
     Minivan,
     SUV,
@@ -21,5 +21,6 @@ public enum CarBodyType {
     Limousine,
     PickUp,
     PassengerVan,
-    Other    
+    Other,
+    Unknown
 }

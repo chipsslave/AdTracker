@@ -95,13 +95,13 @@ public class GsonDataBaseImpl implements DataBase {
         return all.stream().collect(Collectors.toMap(Ad::getAdId, item -> item));
     }
 
-    public Ad getAdToUpdate() {
+    public Ad getAdToUpdate(int howOldDays, int howOldHours) {
         for (Ad ad : dataLocalStorage.values()) {
             if (ad.getStatus() == AdStatus.INTRODUCED) {
                 return ad;
             }
             if (ad.getStatus() != AdStatus.SOLD) {
-                if (ad.getUpdated().isBefore(LocalDateTime.now().minusDays(1))) {
+                if (ad.getUpdated().isBefore(LocalDateTime.now().minusDays(howOldDays).minusHours(howOldHours))) {
                     return ad;
                 }
             }

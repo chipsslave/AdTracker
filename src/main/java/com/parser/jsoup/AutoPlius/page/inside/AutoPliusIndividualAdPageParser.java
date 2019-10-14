@@ -242,26 +242,65 @@ public class AutoPliusIndividualAdPageParser implements IndividualAd {
 
     @Override
     public String parseMake() {
-        // TODO
-        return null;
+        Elements elements = pageContentInHtml.select("li[class=crumb]");
+        return (elements.size() > 1) ? elements.get(2).text() : "";
     }
 
     @Override
     public String parseModel() {
-        // TODO
-        return null;
+        Elements elements = pageContentInHtml.select("li[class=crumb]");
+        return (elements.size() > 1) ? elements.get(3).text() : "";
     }
 
     @Override
     public String parseEngineSize() {
         // TODO
+        //Element element = pageContentInHtml.selectFirst("div[class=col-8 page-title");
         return null;
     }
 
     @Override
     public CarBodyType parseBodyType() {
-        // TODO
-        return null;
+        String element = pageContentInHtml.selectFirst("div.col-8.page-title").text();
+        String[] strings = element.split(", ");
+        String body = (strings.length == 3) ? strings[2] : "";
+        if (body.equals("coupe")) {
+            return CarBodyType.Coupe;
+        }
+        if (body.equals("suv / off-road")) {
+            return CarBodyType.SUV;
+        }
+        if (body.equals("saloon / sedan")) {
+            return CarBodyType.Saloon;
+        }
+        if (body.equals("hetchback")) {
+            return CarBodyType.Hatchback;
+        }
+        if (body.equals("wagon")) {
+            return CarBodyType.Wagon;
+        }
+        if (body.equals("mpv / minivan")) {
+            return CarBodyType.Minivan;
+        }
+        if (body.equals("commercial")) {
+            return CarBodyType.Commercial;
+        }
+        if (body.equals("convertible")) {
+            return CarBodyType.Convertible;
+        }
+        if (body.equals("limousine")) {
+            return CarBodyType.Limousine;
+        }
+        if (body.equals("pick-up")) {
+            return CarBodyType.PickUp;
+        }
+        if (body.equals("passenger vans")) {
+            return CarBodyType.PassengerVan;
+        }
+        if (body.equals("other")) {
+            return CarBodyType.Other;
+        }
+        return CarBodyType.Unknown;
     }
 
     @Override
@@ -286,6 +325,9 @@ public class AutoPliusIndividualAdPageParser implements IndividualAd {
 
         ad.getCar().setDefect(parseDefect());
         ad.getCar().setVin(parseVin());
+        ad.getCar().setMake(parseMake());
+        ad.getCar().setModel(parseModel());
+        ad.getCar().setBodyType(parseBodyType());
 
         ad.setUpdated(LocalDateTime.now());
 

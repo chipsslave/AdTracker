@@ -9,12 +9,12 @@ import org.jsoup.nodes.Document;
 public class AutoPliusIndividualPageService {
     private final GsonDataBaseImpl localJsonStorage = DataBaseFactory.getDataBaseInstance();
 
-    public void updateAdsInDatabase() {
+    public void updateAdsInDatabase(int howOldDays, int howOldHours) {
 
         String tempURL = "";
 
-        while (localJsonStorage.getAdToUpdate() != null) {
-            Ad ad = localJsonStorage.getAdToUpdate();
+        while (localJsonStorage.getAdToUpdate(howOldDays, howOldHours) != null) {
+            Ad ad = localJsonStorage.getAdToUpdate(howOldDays, howOldHours);
 
 
             if (!tempURL.equals(ad.getAdUrl())) {
@@ -26,6 +26,7 @@ public class AutoPliusIndividualPageService {
                 autoPliusIndividualAdPage.checkAdAgainstWebsite();
 
                 tempURL = ad.getAdUrl();
+                localJsonStorage.commit();
             } else {
                 break;
             }
