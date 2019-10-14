@@ -28,6 +28,7 @@ class AutoPliusIndividualAdPageImpl<T extends DataBase> extends AutoPliusIndivid
             parsedAd.setFound(ad.getFound());
             parsedAd.setLastChecked(LocalDateTime.now());
             parsedAd.setStatus(AdStatus.UPDATED);
+            parsedAd.setAdUrl(ad.getAdUrl());
             dataBase.addNew(parsedAd);
         }
 
