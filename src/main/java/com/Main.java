@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args){
         Main main = new Main();
-        main.parseFront(50);
+        //main.parseFront(50);
         main.parseIndividualAds(0, 6);
         main.checkDb();
         main.report();
@@ -44,13 +44,13 @@ public class Main {
     public void checkDb() {
         GsonDataBaseImpl localJsonStorage = DataBaseFactory.getDataBaseInstance();
 
-        for (Ad ad : localJsonStorage.getAll()) {
-            if (ad.getCar().getMake() == null) {
-                localJsonStorage.delete(ad);
-            }
-        }
-
-        localJsonStorage.commit();
+//        for (Ad ad : localJsonStorage.getAll()) {
+//            if (ad.getCar().getMake() == null) {
+//                localJsonStorage.delete(ad);
+//            }
+//        }
+//
+//        localJsonStorage.commit();
 
         for (Ad ad : localJsonStorage.getAll()) {
             if (ad.getCar().getMake() == null) {

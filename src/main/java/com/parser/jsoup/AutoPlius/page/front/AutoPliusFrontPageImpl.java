@@ -23,15 +23,17 @@ class AutoPliusFrontPageImpl<T extends DataBase> extends AutoPliusFrontPageParse
         for (Ad ad : parsedAds) {
             Ad adInDatabase = dataBase.getById(ad.getAdId());
 
-            if (adExistsInStorage(ad)) {
-                if (ad.getStatus() == AdStatus.SOLD) {
-                    if (adInDatabase.getStatus() != AdStatus.SOLD) {
-                        adInDatabase.setStatus(AdStatus.SOLD);
-                        adInDatabase.setSold(LocalDateTime.now());
-                    }
+            if (ad.getStatus().equals(AdStatus.INTRODUCED)) {
+                if (!adExistsInStorage(ad)) {
+                    dataBase.addNew(ad);
                 }
-            } else if (ad.getStatus() != AdStatus.SOLD) {
-                dataBase.addNew(ad);
+            }
+
+            if (ad.getStatus().equals(AdStatus.SOLD)) {
+                if (adExistsInStorage(ad) && !adInDatabase.getStatus().equals(AdStatus.SOLD)) {
+                    adInDatabase.setStatus(AdStatus.SOLD);
+                    adInDatabase.setSold(LocalDateTime.now());
+                }
             }
         }
     }
