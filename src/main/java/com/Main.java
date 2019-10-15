@@ -5,7 +5,7 @@ import com.parser.jsoup.AutoPlius.page.front.AutoPliusFrontPageService;
 import com.parser.jsoup.AutoPlius.page.inside.AutoPliusIndividualPageService;
 import com.report.Report;
 import com.report.ReportGenerator;
-import com.report.comparator.ReportAdsSoldComparator;
+import com.report.comparator.ReportAdsListedComparator;
 import com.storage.db.DataBaseFactory;
 import com.storage.db.GsonDataBaseImpl;
 
@@ -18,8 +18,8 @@ public class Main {
         Main main = new Main();
         main.parseFront(50);
         main.parseIndividualAds(0, 6);
+        main.checkDb();
         main.report();
-        //main.checkDb();
     }
 
     private void parseFront(int numOfPages) {
@@ -35,7 +35,7 @@ public class Main {
     public void report() {
         ReportGenerator reportGenerator = new ReportGenerator();
         reportGenerator.generateDataSet();
-        Collections.sort(reportGenerator.getReportList(), new ReportAdsSoldComparator());
+        Collections.sort(reportGenerator.getReportList(), new ReportAdsListedComparator());
         for (Report report : reportGenerator.getReportList()) {
             System.out.println(report);
         }
@@ -44,11 +44,11 @@ public class Main {
     public void checkDb() {
         GsonDataBaseImpl localJsonStorage = DataBaseFactory.getDataBaseInstance();
 
-//        for (Ad ad : localJsonStorage.getAll()){
-//            if (ad.getCar().getMake() == null){
-//                localJsonStorage.delete(ad);
-//            }
-//        }
+        for (Ad ad : localJsonStorage.getAll()) {
+            if (ad.getCar().getMake() == null) {
+                localJsonStorage.delete(ad);
+            }
+        }
 
         localJsonStorage.commit();
 

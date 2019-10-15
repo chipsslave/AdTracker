@@ -19,20 +19,20 @@ public class ReportGenerator {
         for (Ad ad : localJsonStorage.getAll()) {
             boolean found = false;
             for (Report report : reportList) {
-                if (report.getMake().equals(ad.getCar().getMake()) &&
-                        report.getModel().equals(ad.getCar().getModel()) &&
-                        report.getBodyType().equals(ad.getCar().getBodyType()) &&
-                        report.getFuelType().equals(ad.getCar().getFuelType()) &&
-                        ad.getStatus().equals(AdStatus.SOLD)) {
-                    report.increaseAdsListed();
-                    report.inreaseAdsSold();
-                    found = true;
-                } else if (report.getMake().equals(ad.getCar().getMake()) &&
-                        report.getModel().equals(ad.getCar().getModel()) &&
-                        report.getBodyType().equals(ad.getCar().getBodyType()) &&
-                        report.getFuelType().equals(ad.getCar().getFuelType())) {
-                    report.increaseAdsListed();
-                    found = true;
+                if (report != null) {
+                    if (report.getMake().equals(ad.getCar().getMake()) &&
+                            report.getModel().equals(ad.getCar().getModel()) &&
+                            report.getBodyType().equals(ad.getCar().getBodyType()) &&
+                            report.getFuelType().equals(ad.getCar().getFuelType())) {
+                        if (ad.getStatus().equals(AdStatus.SOLD)) {
+                            report.increaseAdsListed();
+                            report.inreaseAdsSold();
+                            found = true;
+                        } else {
+                            report.increaseAdsListed();
+                            found = true;
+                        }
+                    }
                 }
             }
             if (!found) {
@@ -43,6 +43,7 @@ public class ReportGenerator {
                 }
 
             }
+
         }
     }
 
