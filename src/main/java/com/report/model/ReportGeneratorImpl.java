@@ -28,7 +28,7 @@ public class ReportGeneratorImpl<T extends Report, D extends DataBase> implement
 
     @Override
     public void generateReport() {
-        T r = new Report<T>() {
+        Report<T> r = new Report<T>() {
             @Override
             public List<T> genRep(List<Ad> adsList) {
                 return null;
