@@ -3,23 +3,22 @@ package com;
 import com.model.Ad;
 import com.parser.jsoup.AutoPlius.page.front.AutoPliusFrontPageService;
 import com.parser.jsoup.AutoPlius.page.inside.AutoPliusIndividualPageService;
-import com.report.Report;
-import com.report.ReportGenerator;
-import com.report.comparator.ReportAdsListedComparator;
+import com.report.model.ReportGeneratorImpl;
+import com.report.reports.R01;
 import com.storage.db.DataBaseFactory;
 import com.storage.db.GsonDataBaseImpl;
-
-import java.util.Collections;
 
 
 public class Main {
 
+    private final GsonDataBaseImpl localJsonStorage = DataBaseFactory.getDataBaseInstance();
+
     public static void main(String[] args){
         Main main = new Main();
         //main.parseFront(50);
-        main.parseIndividualAds(0, 6);
-        main.checkDb();
-        main.report();
+        //main.parseIndividualAds(0, 6);
+        //main.checkDb();
+        main.genReport();
     }
 
     private void parseFront(int numOfPages) {
@@ -30,15 +29,6 @@ public class Main {
     private void parseIndividualAds(int howOldDays, int howOldHours) {
         AutoPliusIndividualPageService autoPliusIndividualPageService = new AutoPliusIndividualPageService();
         autoPliusIndividualPageService.updateAdsInDatabase(howOldDays, howOldHours);
-    }
-
-    public void report() {
-        ReportGenerator reportGenerator = new ReportGenerator();
-        reportGenerator.generateDataSet();
-        Collections.sort(reportGenerator.getReportList(), new ReportAdsListedComparator());
-        for (Report report : reportGenerator.getReportList()) {
-            System.out.println(report);
-        }
     }
 
     public void checkDb() {
@@ -57,5 +47,11 @@ public class Main {
                 System.out.println(ad);
             }
         }
+    }
+
+    public void genReport() {
+        ReportGeneratorImpl<R01, GsonDataBaseImpl> reportGenerator = new ReportGeneratorImpl<>(localJsonStorage);
+        reportGenerator.generateReport();
+        reportGenerator.printToConsole();
     }
 }
