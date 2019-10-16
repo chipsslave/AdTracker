@@ -4,10 +4,12 @@ import AdTracker.model.Ad;
 import AdTracker.parser.jsoup.AutoPlius.page.front.AutoPliusFrontPageService;
 import AdTracker.parser.jsoup.AutoPlius.page.inside.AutoPliusIndividualPageService;
 import AdTracker.report.ReportGeneratorImpl;
+import AdTracker.report.comparator.AdsListedComparator;
 import AdTracker.report.reports.r01.R01ReportItem;
 import AdTracker.storage.db.DataBaseFactory;
 import AdTracker.storage.db.GsonDataBaseImpl;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -53,7 +55,7 @@ public class Main {
 
     public void genReport() {
         List<R01ReportItem> r01ReportItems = ReportGeneratorImpl.genReport01(localJsonStorage.getAll());
-        //Collections.sort(r01ReportItems, new AdsListedComparator());
+        Collections.sort(r01ReportItems, new AdsListedComparator());
         for (R01ReportItem r : r01ReportItems) {
             System.out.println(r);
         }
