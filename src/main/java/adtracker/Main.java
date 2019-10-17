@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args){
         Main main = new Main();
         //main.parseFront(50);
-        main.parseIndividualAds(0, 6);
+        //main.parseIndividualAds(0, 6);
         main.genReport(ReportList.R01);
     }
 
