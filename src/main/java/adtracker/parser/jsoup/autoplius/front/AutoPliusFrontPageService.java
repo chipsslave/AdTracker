@@ -1,4 +1,4 @@
-package adtracker.parser.jsoup.AutoPlius.page.front;
+package adtracker.parser.jsoup.autoplius.front;
 
 import adtracker.storage.db.DataBaseFactory;
 import adtracker.storage.db.GsonDataBaseImpl;

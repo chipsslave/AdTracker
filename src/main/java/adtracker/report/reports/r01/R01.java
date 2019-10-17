@@ -3,14 +3,16 @@ package adtracker.report.reports.r01;
 import adtracker.model.Ad;
 import adtracker.model.enums.AdStatus;
 import adtracker.report.Report;
+import adtracker.report.ReportItem;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class R01 implements Report<R01ReportItem> {
 
     @Override
-    public List<R01ReportItem> generateListOfReportItems(List<Ad> adsList) {
+    public List<R01ReportItem> generateListOfReportItems(List<Ad> adsList, Comparator<ReportItem> comparator) {
         List<R01ReportItem> items = new ArrayList<>();
         for (Ad ad : adsList) {
             boolean found = false;
@@ -35,6 +37,7 @@ public class R01 implements Report<R01ReportItem> {
             }
 
         }
+        items.sort(comparator);
         return items;
     }
 }

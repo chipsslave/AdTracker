@@ -1,4 +1,4 @@
-package adtracker.parser.jsoup.AutoPlius.page.front;
+package adtracker.parser.jsoup.autoplius.front;
 
 import adtracker.model.Ad;
 import adtracker.model.enums.AdStatus;

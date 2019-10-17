@@ -1,4 +1,4 @@
-package adtracker.parser.jsoup.AutoPlius.page.front;
+package adtracker.parser.jsoup.autoplius.front;
 
 import adtracker.model.Ad;
 import adtracker.model.ModelFactory;
@@ -45,9 +45,7 @@ public class AutoPliusFrontPageParser implements FrontPage {
     @Override
     public List<Ad> parseAds() {
         List<Ad> adList = new ArrayList<>();
-        getAdsInHtml().forEach(adInHtml -> {
-            adList.add(ModelFactory.getNewAdInstance(parseAdId(adInHtml), parseAdUrl(adInHtml), parseAdStatus(adInHtml), LocalDateTime.now()));
-        });
+        getAdsInHtml().forEach(adInHtml -> adList.add(ModelFactory.getNewAdInstance(parseAdId(adInHtml), parseAdUrl(adInHtml), parseAdStatus(adInHtml), LocalDateTime.now())));
         return adList;
     }
 

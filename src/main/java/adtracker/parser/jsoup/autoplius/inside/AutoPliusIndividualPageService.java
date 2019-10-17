@@ -1,4 +1,4 @@
-package adtracker.parser.jsoup.AutoPlius.page.inside;
+package adtracker.parser.jsoup.autoplius.inside;
 
 import adtracker.model.Ad;
 import adtracker.storage.db.DataBaseFactory;

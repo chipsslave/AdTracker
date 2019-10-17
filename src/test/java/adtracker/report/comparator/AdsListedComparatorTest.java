@@ -50,7 +50,6 @@ public class AdsListedComparatorTest {
         assertEquals(testDataSuccess.get(2), sortedAscendingReportItems.get(2));
         assertEquals(testDataSuccess.get(3), sortedAscendingReportItems.get(3));
         assertEquals(testDataSuccess.get(4), sortedAscendingReportItems.get(4));
-        assertEquals(testDataSuccess.size(), sortedAscendingReportItems.size());
     }
 
     @Test
@@ -61,11 +60,16 @@ public class AdsListedComparatorTest {
         assertEquals(testDataSuccess.get(2), sortedDescendingReportItems.get(2));
         assertEquals(testDataSuccess.get(3), sortedDescendingReportItems.get(3));
         assertEquals(testDataSuccess.get(4), sortedDescendingReportItems.get(4));
-        assertEquals(testDataSuccess.size(), sortedDescendingReportItems.size());
     }
 
     @Test(expected = NullPointerException.class)
     public void checkIfNullValueThrowsException() {
         testDataFail.sort(new AdsListedComparator(true));
+    }
+
+    @Test
+    public void checkSize() {
+        assertEquals(testDataSuccess.size(), sortedAscendingReportItems.size());
+        assertEquals(testDataSuccess.size(), sortedDescendingReportItems.size());
     }
 }
