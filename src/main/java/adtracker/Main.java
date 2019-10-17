@@ -53,7 +53,7 @@ public class Main {
     }
 
     private void genReport() {
-        List<R01ReportItem> r01ReportItems = ReportGenerator.genReport01(localJsonStorage.getAll(), new AdsListedComparator(true));
+        List<R01ReportItem> r01ReportItems = ReportGenerator.getReport(localJsonStorage.getAll(), new AdsListedComparator(true));
         r01ReportItems.forEach(System.out::println);
     }
 }
