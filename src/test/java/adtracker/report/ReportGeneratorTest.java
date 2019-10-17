@@ -6,6 +6,7 @@ import adtracker.report.reports.r01.R01ReportItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -20,6 +21,7 @@ import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 
+@Ignore
 public class ReportGeneratorTest {
 
     private List<Ad> adList = new ArrayList<>();
