@@ -1,6 +1,5 @@
 package adtracker;
 
-import adtracker.model.Ad;
 import adtracker.parser.jsoup.autoplius.front.AutoPliusFrontPageService;
 import adtracker.parser.jsoup.autoplius.inside.AutoPliusIndividualPageService;
 import adtracker.report.ReportGenerator;
@@ -16,10 +15,9 @@ public class Main {
 
     public static void main(String[] args){
         Main main = new Main();
-//        main.parseFront(50);
-//        main.parseIndividualAds(0, 6);
-//        main.checkDb();
-        main.genReport();
+        //main.parseFront(50);
+        main.parseIndividualAds(0, 6);
+        main.genReport(ReportList.R01);
     }
 
     private void parseFront(int numOfPages) {
@@ -32,26 +30,8 @@ public class Main {
         autoPliusIndividualPageService.updateAdsInDatabase(howOldDays, howOldHours);
     }
 
-    private void checkDb() {
-        GsonDataBaseImpl localJsonStorage = DataBaseFactory.getDataBaseInstance();
-
-//        for (Ad ad : localJsonStorage.getAll()) {
-//            if (ad.getCar().getMake() == null) {
-//                localJsonStorage.delete(ad);
-//            }
-//        }
-//
-//        localJsonStorage.commit();
-
-        for (Ad ad : localJsonStorage.getAll()) {
-            if (ad.getCar().getMake() == null) {
-                System.out.println(ad);
-            }
-        }
-    }
-
-    private void genReport() {
+    private void genReport(ReportList reportName) {
         ReportGenerator reportGenerator = new ReportGenerator();
-        reportGenerator.getReport(ReportList.R01, localJsonStorage.getAll(), new AdsListedComparator(true)).forEach(System.out::println);
+        reportGenerator.getReport(reportName, localJsonStorage.getAll(), new AdsListedComparator(true)).forEach(System.out::println);
     }
 }

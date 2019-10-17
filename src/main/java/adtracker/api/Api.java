@@ -10,7 +10,5 @@ public interface Api<T extends DataBase> {
 
     void checkFrontPageForNewAds(Document pageContentInHtml, T dataBase);
 
-    Ad getAdToUpdate();
-
     void updateAd(Document pageContentInHtml, T dataBase, Ad ad);
 }

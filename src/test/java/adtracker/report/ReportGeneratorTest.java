@@ -16,8 +16,10 @@ public class ReportGeneratorTest {
 
     private final GsonDataBaseImpl adsDataBase = DataBaseFactory.getDataBaseInstance("src/test/java/resource/TESTS_DATA.json");
 
-    private List<R01ReportItem> r01ReportItemsAscending = ReportGenerator.getReport(adsDataBase.getAll(), new AdsListedComparator(true));
-    private List<R01ReportItem> r01ReportItemsDescending = ReportGenerator.getReport(adsDataBase.getAll(), new AdsListedComparator(false));
+    private ReportGenerator reportGenerator = new ReportGenerator();
+
+    private List<?> r01ReportItemsAscending = reportGenerator.getReport(ReportList.R01, adsDataBase.getAll(), new AdsListedComparator(true));
+    private List<?> r01ReportItemsDescending = reportGenerator.getReport(ReportList.R01, adsDataBase.getAll(), new AdsListedComparator(false));
 
     private List<R01ReportItem> r01ReportItemsDescendingSuccess = Arrays.asList(
             new R01ReportItem("Ford", 3, 0, 0.0),
@@ -56,13 +58,13 @@ public class ReportGeneratorTest {
     public void checkIfNullValueThrowsExceptionAscending() {
         List<Ad> r01ReportItemsFail = adsDataBase.getAll();
         r01ReportItemsFail.add(null);
-        ReportGenerator.getReport(r01ReportItemsFail, new AdsListedComparator(true));
+        reportGenerator.getReport(ReportList.R01, r01ReportItemsFail, new AdsListedComparator(true));
     }
 
     @Test(expected = NullPointerException.class)
     public void checkIfNullValueThrowsExceptionDescending() {
         List<Ad> r01ReportItemsFail = adsDataBase.getAll();
         r01ReportItemsFail.add(null);
-        ReportGenerator.getReport(r01ReportItemsFail, new AdsListedComparator(false));
+        reportGenerator.getReport(ReportList.R01, r01ReportItemsFail, new AdsListedComparator(false));
     }
 }
