@@ -1,0 +1,478 @@
+[
+  {
+    "adId": "9688499",
+    "adUrl": "https://en.autoplius.lt/ads/volvo-s60-2-4-l-saloon-sedan-2001-petrol-gas-9688499.html",
+    "author": {
+      "name": "Private seller",
+      "location": "Palanga, Lithuania",
+      "phone": "+370 670 84941"
+    },
+    "status": "UPDATED",
+    "found": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 10,
+        "second": 41,
+        "nano": 407854300
+      }
+    },
+    "updated": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 11,
+        "second": 11,
+        "nano": 575907700
+      }
+    },
+    "lastChecked": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 11,
+        "second": 11,
+        "nano": 575907700
+      }
+    },
+    "price": 1100,
+    "car": {
+      "makeYear": "2001",
+      "fuelType": "PetrolLpg",
+      "gearbox": "Manual",
+      "enginePower": "2435 cm³, 140 HP (103kW)",
+      "mileage": 290000,
+      "wheelPosition": "Left",
+      "driveTrain": "FrontDrive",
+      "weight": 1508,
+      "firstRegCountry": "Germany",
+      "defect": "NoDamage",
+      "vin": "",
+      "make": "Volvo",
+      "model": "S60",
+      "bodyType": "Saloon"
+    },
+    "location": "Palanga, Lithuania",
+    "comment": "Parduodu Volvo S60, nes įsigijau kitą automobilį. Stovis geras, sėdi ir važiuoji. Važiuoja benzinu ir dujomis. Trukūmai: smulkūs kėbulo defektai, matosi nuotraukose. Iš vidaus neatsidaro priekinės keleivio durelės."
+  },
+  {
+    "adId": "9666247",
+    "adUrl": "https://en.autoplius.lt/ads/nissan-x-trail-2-0-l-suv-off-road-2008-diesel-9666247.html",
+    "author": {
+      "name": "Private seller",
+      "location": "Vilnius, Lithuania",
+      "phone": "+370 672 92055"
+    },
+    "status": "UPDATED",
+    "found": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 13
+      },
+      "time": {
+        "hour": 22,
+        "minute": 55,
+        "second": 26,
+        "nano": 186294100
+      }
+    },
+    "updated": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 10,
+        "second": 48,
+        "nano": 604988300
+      }
+    },
+    "lastChecked": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 10,
+        "second": 48,
+        "nano": 604988300
+      }
+    },
+    "price": 4950,
+    "car": {
+      "makeYear": "2008-12",
+      "fuelType": "Diesel",
+      "gearbox": "Manual",
+      "enginePower": "2000 cm³, 149 HP (110kW)",
+      "mileage": 330000,
+      "wheelPosition": "Left",
+      "driveTrain": "AllWheelDrive",
+      "weight": 0,
+      "firstRegCountry": "",
+      "defect": "NoDamage",
+      "vin": "",
+      "make": "Nissan",
+      "model": "X-Trail",
+      "bodyType": "SUV"
+    },
+    "location": "Vilnius, Lithuania",
+    "comment": "Parduodamas šeimos automobilis. Pilnai paruoštas žiemai, apnynaujos žieminės padangos, nesenai praeita tech. Apžiūra. Visa dominanti informacija telefonu. Jokie keitimai nedomina."
+  },
+  {
+    "adId": "7986093",
+    "adUrl": "https://en.autoplius.lt/ads/ford-galaxy-1-9-l-mpv-minivan-2001-diesel-7986093.html",
+    "author": {
+      "name": "Private seller",
+      "location": "Utena, Lithuania",
+      "phone": "+370 603 69083"
+    },
+    "status": "UPDATED",
+    "found": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 15
+      },
+      "time": {
+        "hour": 7,
+        "minute": 1,
+        "second": 18,
+        "nano": 395297200
+      }
+    },
+    "updated": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 10,
+        "second": 48,
+        "nano": 933238100
+      }
+    },
+    "lastChecked": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 10,
+        "second": 48,
+        "nano": 933238100
+      }
+    },
+    "price": 1350,
+    "car": {
+      "makeYear": "2001-10",
+      "fuelType": "Diesel",
+      "gearbox": "Manual",
+      "enginePower": "1900 cm³, 115 HP (85kW)",
+      "mileage": 0,
+      "wheelPosition": "Left",
+      "driveTrain": "Unknown",
+      "weight": 0,
+      "firstRegCountry": "",
+      "defect": "NoDamage",
+      "vin": "",
+      "make": "Ford",
+      "model": "Galaxy",
+      "bodyType": "Minivan"
+    },
+    "location": "Utena, Lithuania",
+    "comment": "is vokietijos"
+  },
+  {
+    "adId": "9668427",
+    "adUrl": "https://en.autoplius.lt/ads/subaru-impreza-2-0-l-wagon-2001-petrol-gas-9668427.html",
+    "author": {
+      "name": "Private seller",
+      "location": "Vilnius, Lithuania",
+      "phone": "+370 671 60881"
+    },
+    "status": "UPDATED",
+    "found": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 13
+      },
+      "time": {
+        "hour": 22,
+        "minute": 55,
+        "second": 21,
+        "nano": 344430100
+      }
+    },
+    "updated": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 10,
+        "second": 49,
+        "nano": 163450000
+      }
+    },
+    "lastChecked": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 10,
+        "second": 49,
+        "nano": 163450000
+      }
+    },
+    "price": 1600,
+    "car": {
+      "makeYear": "2001-01",
+      "fuelType": "PetrolLpg",
+      "gearbox": "Automatic",
+      "enginePower": "1992 cm³, 125 HP (92kW)",
+      "mileage": 211000,
+      "wheelPosition": "Left",
+      "driveTrain": "Unknown",
+      "weight": 0,
+      "firstRegCountry": "",
+      "defect": "NoDamage",
+      "vin": "",
+      "make": "Subaru",
+      "model": "Impreza",
+      "bodyType": "Wagon"
+    },
+    "location": "Vilnius, Lithuania",
+    "comment": "Auto myletas ir prižiuretas vairuoja moteris. Visi aptarnavimai datyti laiku. Auto iš šveicarijos 3metai lietuvoj."
+  },
+  {
+    "adId": "9667573",
+    "adUrl": "https://en.autoplius.lt/ads/volvo-v50-2-0-l-wagon-2009-diesel-9667573.html",
+    "author": {
+      "name": "Private seller",
+      "location": "Kuršėnai, Lithuania",
+      "phone": "+370 601 75748"
+    },
+    "status": "UPDATED",
+    "found": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 13
+      },
+      "time": {
+        "hour": 22,
+        "minute": 55,
+        "second": 23,
+        "nano": 808550600
+      }
+    },
+    "updated": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 10,
+        "second": 49,
+        "nano": 371445500
+      }
+    },
+    "lastChecked": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 10,
+        "second": 49,
+        "nano": 371445500
+      }
+    },
+    "price": 2999,
+    "car": {
+      "makeYear": "2009",
+      "fuelType": "Diesel",
+      "gearbox": "Manual",
+      "enginePower": "2000 cm³, 135 HP (100kW)",
+      "mileage": 164672,
+      "wheelPosition": "Left",
+      "driveTrain": "Unknown",
+      "weight": 0,
+      "firstRegCountry": "",
+      "defect": "NoDamage",
+      "vin": "",
+      "make": "Volvo",
+      "model": "V50",
+      "bodyType": "Wagon"
+    },
+    "location": "Kuršėnai, Lithuania",
+    "comment": "Tvarkingas automobilis, kėbulo trūkumas - pabraizyti kampai. Daugiau info telefonu."
+  },
+  {
+    "adId": "9689283",
+    "adUrl": "https://en.autoplius.lt/ads/ford-galaxy-2-0-l-mpv-minivan-1995-petrol-9689283.html",
+    "author": {
+      "name": "Private seller",
+      "location": "Šiauliai, Lithuania",
+      "phone": "+370 671 48759"
+    },
+    "status": "UPDATED",
+    "found": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 10,
+        "second": 39,
+        "nano": 415298300
+      }
+    },
+    "updated": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 13,
+        "second": 3,
+        "nano": 122353700
+      }
+    },
+    "lastChecked": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 13,
+        "second": 3,
+        "nano": 122353700
+      }
+    },
+    "price": 670,
+    "car": {
+      "makeYear": "1995-11",
+      "fuelType": "Petrol",
+      "gearbox": "Manual",
+      "enginePower": "1998 cm³, 115 HP (85kW)",
+      "mileage": 0,
+      "wheelPosition": "Left",
+      "driveTrain": "Unknown",
+      "weight": 1750,
+      "firstRegCountry": "",
+      "defect": "NoDamage",
+      "vin": "",
+      "make": "Ford",
+      "model": "Galaxy",
+      "bodyType": "Minivan"
+    },
+    "location": "Šiauliai, Lithuania",
+    "comment": ""
+  },
+  {
+    "adId": "9355833",
+    "adUrl": "https://en.autoplius.lt/ads/ford-f150-5-0-l-suv-off-road-2012-petrol-9355833.html",
+    "author": {
+      "name": "Private seller",
+      "location": "Kaunas, Lithuania",
+      "phone": "+370 677 00889"
+    },
+    "status": "UPDATED",
+    "found": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 15
+      },
+      "time": {
+        "hour": 7,
+        "minute": 1,
+        "second": 14,
+        "nano": 570353200
+      }
+    },
+    "updated": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 13,
+        "second": 18,
+        "nano": 35758500
+      }
+    },
+    "lastChecked": {
+      "date": {
+        "year": 2019,
+        "month": 10,
+        "day": 16
+      },
+      "time": {
+        "hour": 19,
+        "minute": 13,
+        "second": 18,
+        "nano": 35758500
+      }
+    },
+    "price": 19500,
+    "car": {
+      "makeYear": "2012",
+      "fuelType": "Petrol",
+      "gearbox": "Automatic",
+      "enginePower": "5000 cm³, 365 HP (269kW)",
+      "mileage": 235000,
+      "wheelPosition": "Left",
+      "driveTrain": "AllWheelDrive",
+      "weight": 3340,
+      "firstRegCountry": "",
+      "defect": "NoDamage",
+      "vin": "",
+      "make": "Ford",
+      "model": "F150",
+      "bodyType": "SUV"
+    },
+    "location": "Kaunas, Lithuania",
+    "comment": "Ford FX4 .Registruotas lietuvoje. Iškeltas orginaliai JAV. Daugiau info telefonu, su rimtu pirkeju kaina žinoma derinama."
+  }
+]

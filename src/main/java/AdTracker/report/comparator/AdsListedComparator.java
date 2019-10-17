@@ -14,6 +14,7 @@ public class AdsListedComparator implements Comparator<ReportItem> {
 
     @Override
     public int compare(ReportItem reportItem, ReportItem t1) {
+
         if (ascending) {
             return Integer.compare(reportItem.getAdsListed(), t1.getAdsListed());
         } else {
