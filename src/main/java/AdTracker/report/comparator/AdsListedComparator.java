@@ -15,20 +15,9 @@ public class AdsListedComparator implements Comparator<ReportItem> {
     @Override
     public int compare(ReportItem reportItem, ReportItem t1) {
         if (ascending) {
-            if (reportItem.getAdsListed() > t1.getAdsListed()) {
-                return 1;
-            }
-            if (reportItem.getAdsListed() < t1.getAdsListed()) {
-                return -1;
-            }
+            return Integer.compare(reportItem.getAdsListed(), t1.getAdsListed());
         } else {
-            if (reportItem.getAdsListed() > t1.getAdsListed()) {
-                return -1;
-            }
-            if (reportItem.getAdsListed() < t1.getAdsListed()) {
-                return 1;
-            }
+            return Integer.compare(t1.getAdsListed(), reportItem.getAdsListed());
         }
-        return 0;
     }
 }

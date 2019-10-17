@@ -17,6 +17,15 @@ public class AdsListedComparatorTest {
             new ReportItem(-3, 2, 0.0)
     );
 
+    private List<ReportItem> testDataFail = Arrays.asList(
+            new ReportItem(5, 2, 0.0),
+            new ReportItem(8, 2, 0.0),
+            new ReportItem(34, 2, 0.0),
+            new ReportItem(0, 2, 0.0),
+            new ReportItem(-3, 2, 0.0),
+            null
+    );
+
     private List<ReportItem> sortedAscendingReportItems = Arrays.asList(
             new ReportItem(-3, 2, 0.0),
             new ReportItem(0, 2, 0.0),
@@ -53,5 +62,10 @@ public class AdsListedComparatorTest {
         assertEquals(testDataSuccess.get(3), sortedDescendingReportItems.get(3));
         assertEquals(testDataSuccess.get(4), sortedDescendingReportItems.get(4));
         assertEquals(testDataSuccess.size(), sortedDescendingReportItems.size());
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void checkIfNullValueThrowsException() {
+        testDataFail.sort(new AdsListedComparator(true));
     }
 }
