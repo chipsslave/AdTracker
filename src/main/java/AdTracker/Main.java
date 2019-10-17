@@ -9,7 +9,6 @@ import AdTracker.report.reports.r01.R01ReportItem;
 import AdTracker.storage.db.DataBaseFactory;
 import AdTracker.storage.db.GsonDataBaseImpl;
 
-import java.util.Collections;
 import java.util.List;
 
 
@@ -35,7 +34,7 @@ public class Main {
         autoPliusIndividualPageService.updateAdsInDatabase(howOldDays, howOldHours);
     }
 
-    public void checkDb() {
+    private void checkDb() {
         GsonDataBaseImpl localJsonStorage = DataBaseFactory.getDataBaseInstance();
 
 //        for (Ad ad : localJsonStorage.getAll()) {
@@ -53,9 +52,9 @@ public class Main {
         }
     }
 
-    public void genReport() {
+    private void genReport() {
         List<R01ReportItem> r01ReportItems = ReportGeneratorImpl.genReport01(localJsonStorage.getAll());
-        Collections.sort(r01ReportItems, new AdsListedComparator());
+        r01ReportItems.sort(new AdsListedComparator(false));
         for (R01ReportItem r : r01ReportItems) {
             System.out.println(r);
         }

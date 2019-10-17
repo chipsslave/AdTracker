@@ -1,8 +1,10 @@
 package AdTracker.report;
 
+import java.util.Objects;
+
 public class ReportItem {
-    private int adsListed = 0;
-    private int adsSold = 0;
+    private int adsListed;
+    private int adsSold;
     private double avgSaleTime;
 
     public ReportItem(int adsListed, int adsSold, double avgSaleTime) {
@@ -33,5 +35,29 @@ public class ReportItem {
 
     public void setAvgSaleTime(double avgSaleTime) {
         this.avgSaleTime = avgSaleTime;
+    }
+
+    @Override
+    public String toString() {
+        return "ReportItem{" +
+                "adsListed=" + adsListed +
+                ", adsSold=" + adsSold +
+                ", avgSaleTime=" + avgSaleTime +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ReportItem that = (ReportItem) o;
+        return adsListed == that.adsListed &&
+                adsSold == that.adsSold &&
+                Double.compare(that.avgSaleTime, avgSaleTime) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(adsListed, adsSold, avgSaleTime);
     }
 }
