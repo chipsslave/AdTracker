@@ -5,7 +5,8 @@ import adtracker.parser.jsoup.autoplius.inside.AutoPliusIndividualPageService;
 import adtracker.report.ReportGenerator;
 import adtracker.report.ReportItem;
 import adtracker.report.ReportList;
-import adtracker.report.comparator.AdsListedComparator;
+import adtracker.report.comparator.ComparatorFactory;
+import adtracker.report.comparator.ComparatorsList;
 import adtracker.storage.db.DataBaseFactory;
 import adtracker.storage.db.GsonDataBaseImpl;
 
@@ -20,7 +21,7 @@ public class Main {
         Main main = new Main();
 //        main.parseFront(50);
 //        main.parseIndividualAds(0, 6);
-        main.genReport(ReportList.R02, new AdsListedComparator(true));
+        main.genReport(ReportList.R01, ComparatorFactory.getComparator(ComparatorsList.AdsAverageSaleTimeComparator, true));
     }
 
     private void parseFront(int numOfPages) {

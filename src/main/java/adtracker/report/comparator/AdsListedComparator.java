@@ -8,7 +8,7 @@ public class AdsListedComparator implements Comparator<ReportItem> {
 
     private boolean ascending;
 
-    public AdsListedComparator(boolean ascending) {
+    AdsListedComparator(boolean ascending) {
         this.ascending = ascending;
     }
 

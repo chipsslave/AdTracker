@@ -33,7 +33,7 @@ public class ReportItem {
         this.adsSold = adsSold;
     }
 
-    protected double getAvgSaleTimeInDays() {
+    public double getAvgSaleTimeInDays() {
         DecimalFormat df = new DecimalFormat("#.##");
         return Double.parseDouble(df.format(this.saleInDays.stream().mapToLong(val -> val).average().orElse(0.0)));
     }
