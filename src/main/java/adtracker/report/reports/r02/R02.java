@@ -5,6 +5,7 @@ import adtracker.model.enums.AdStatus;
 import adtracker.report.Report;
 import adtracker.report.ReportItem;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -20,6 +21,9 @@ public class R02 implements Report<R02ReportItem> {
                     if (item.getMake().equals(ad.getCar().getMake()) && item.getModel().equals(ad.getCar().getModel())) {
                         if (ad.getStatus().equals(AdStatus.SOLD)) {
                             item.setAdsSold(item.getAdsSold() + 1);
+                            Duration duration = Duration.between(ad.getSold(), ad.getFound());
+                            long soldInDays = Math.abs(duration.toDays());
+                            item.pushSaleInDays(soldInDays);
                         }
                         found = true;
                         item.setAdsListed(item.getAdsListed() + 1);

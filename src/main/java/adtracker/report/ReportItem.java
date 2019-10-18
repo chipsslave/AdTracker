@@ -1,16 +1,20 @@
 package adtracker.report;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ReportItem {
     private int adsListed;
     private int adsSold;
-    private double avgSaleTime;
+    private double avgSaleTimeInDays;
+    private List<Long> saleInDays = new ArrayList<>();
 
-    public ReportItem(int adsListed, int adsSold, double avgSaleTime) {
+    public ReportItem(int adsListed, int adsSold, double avgSaleTimeInDays) {
         this.adsListed = adsListed;
         this.adsSold = adsSold;
-        this.avgSaleTime = avgSaleTime;
+        this.avgSaleTimeInDays = avgSaleTimeInDays;
     }
 
     public int getAdsListed() {
@@ -29,12 +33,13 @@ public class ReportItem {
         this.adsSold = adsSold;
     }
 
-    public double getAvgSaleTime() {
-        return avgSaleTime;
+    protected double getAvgSaleTimeInDays() {
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(this.saleInDays.stream().mapToLong(val -> val).average().orElse(0.0)));
     }
 
-    public void setAvgSaleTime(double avgSaleTime) {
-        this.avgSaleTime = avgSaleTime;
+    public void pushSaleInDays(Long saleInDays) {
+        this.saleInDays.add(saleInDays);
     }
 
     @Override
@@ -42,7 +47,7 @@ public class ReportItem {
         return "ReportItem{" +
                 "adsListed=" + adsListed +
                 ", adsSold=" + adsSold +
-                ", avgSaleTime=" + avgSaleTime +
+                ", avgSaleTimeInDays=" + avgSaleTimeInDays +
                 '}';
     }
 
@@ -53,11 +58,11 @@ public class ReportItem {
         ReportItem that = (ReportItem) o;
         return adsListed == that.adsListed &&
                 adsSold == that.adsSold &&
-                Double.compare(that.avgSaleTime, avgSaleTime) == 0;
+                Double.compare(that.avgSaleTimeInDays, avgSaleTimeInDays) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(adsListed, adsSold, avgSaleTime);
+        return Objects.hash(adsListed, adsSold, avgSaleTimeInDays);
     }
 }

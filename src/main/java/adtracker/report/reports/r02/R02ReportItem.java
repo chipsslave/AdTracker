@@ -6,7 +6,7 @@ public class R02ReportItem extends ReportItem {
     private String make;
     private String model;
 
-    public R02ReportItem(String make, String model, int adsListed, int adsSold, double avgSaleTime) {
+    R02ReportItem(String make, String model, int adsListed, int adsSold, double avgSaleTime) {
         super(adsListed, adsSold, avgSaleTime);
         this.make = make;
         this.model = model;
@@ -31,6 +31,6 @@ public class R02ReportItem extends ReportItem {
     @Override
     public String toString() {
         return "R02ReportItem [make=" + make + ", model=" + model + ", adsListed=" + getAdsListed() + ", adsSold=" + getAdsSold() + ", avgSaleTime="
-                + getAvgSaleTime() + "]";
+                + getAvgSaleTimeInDays() + "]";
     }
 }

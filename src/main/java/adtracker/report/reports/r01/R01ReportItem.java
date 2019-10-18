@@ -20,7 +20,7 @@ public class R01ReportItem extends ReportItem {
 
     @Override
     public String toString() {
-        return "R01ReportItem [make=" + make + ", adsListed=" + getAdsListed() + ", adsSold=" + getAdsSold() + ", avgSaleTime="
-                + getAvgSaleTime() + "]";
+        return "R01ReportItem [make=" + make + ", adsListed=" + getAdsListed() + ", adsSold=" + getAdsSold() + ", avgSaleTimeInDays="
+                + getAvgSaleTimeInDays() + "]";
     }
 }
