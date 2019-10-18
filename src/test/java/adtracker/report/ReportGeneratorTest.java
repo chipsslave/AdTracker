@@ -1,7 +1,8 @@
 package adtracker.report;
 
 import adtracker.model.Ad;
-import adtracker.report.comparator.AdsListedComparator;
+import adtracker.report.comparator.ComparatorFactory;
+import adtracker.report.comparator.ComparatorsList;
 import adtracker.report.reports.r01.R01ReportItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -51,8 +52,8 @@ public class ReportGeneratorTest {
             e.printStackTrace();
         }
 
-        r01ReportItemsAscending = reportGenerator.getReport(ReportList.R01, adList, new AdsListedComparator(true));
-        r01ReportItemsDescending = reportGenerator.getReport(ReportList.R01, adList, new AdsListedComparator(false));
+        r01ReportItemsAscending = reportGenerator.getReport(ReportList.R01, adList, ComparatorFactory.getComparator(ComparatorsList.AdsListedComparator, true));
+        r01ReportItemsDescending = reportGenerator.getReport(ReportList.R01, adList, ComparatorFactory.getComparator(ComparatorsList.AdsListedComparator, false));
 
         r01ReportItemsDescendingSuccess = Arrays.asList(
                 new R01ReportItem("Ford", 3, 0, 0.0),
@@ -92,13 +93,13 @@ public class ReportGeneratorTest {
     public void checkIfNullValueThrowsExceptionAscending() {
         List<Ad> r01ReportItemsFail = adList;
         r01ReportItemsFail.add(null);
-        reportGenerator.getReport(ReportList.R01, r01ReportItemsFail, new AdsListedComparator(true));
+        reportGenerator.getReport(ReportList.R01, r01ReportItemsFail, ComparatorFactory.getComparator(ComparatorsList.AdsListedComparator, true));
     }
 
     @Test(expected = NullPointerException.class)
     public void checkIfNullValueThrowsExceptionDescending() {
         List<Ad> r01ReportItemsFail = adList;
         r01ReportItemsFail.add(null);
-        reportGenerator.getReport(ReportList.R01, r01ReportItemsFail, new AdsListedComparator(false));
+        reportGenerator.getReport(ReportList.R01, r01ReportItemsFail, ComparatorFactory.getComparator(ComparatorsList.AdsListedComparator, false));
     }
 }
