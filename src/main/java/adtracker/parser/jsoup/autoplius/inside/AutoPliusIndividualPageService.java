@@ -18,7 +18,7 @@ public class AutoPliusIndividualPageService {
 
 
             if (!tempURL.equals(ad.getAdUrl())) {
-                System.out.println(ad.getAdUrl());
+                //System.out.println(ad.getAdUrl());
 
                 Document pageInHtml = UrlContentReader.readContentInJsoupDocument(ad.getAdUrl());
 
